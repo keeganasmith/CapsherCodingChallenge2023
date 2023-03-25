@@ -8,6 +8,7 @@ running = True
 
 test_surface = pygame.image.load("map.png");
 enemy_surface = pygame.image.load("enemy.png");
+enemy_pos = [0, 400];
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
@@ -18,7 +19,9 @@ while running:
     #screen.fill("blue")
 
     screen.blit(test_surface, (0, 0));
-    screen.blit(enemy_surface, (0, 400));
+    
+    screen.blit(enemy_surface, (enemy_pos[0], enemy_pos[1]));
+    enemy_pos[0] += 1;
     # flip() the display to put your work on screen
     pygame.display.flip()
 
