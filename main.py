@@ -1,6 +1,6 @@
 import pygame
 import math
-
+import playbutton
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
@@ -70,6 +70,13 @@ help_surface.fill('Yellow')
 
 # Can add as many enimies as you want
 enemies.append(Enemy())
+
+#boolean for keeping track of wave
+wave_in_progress = False
+
+play_button = playbutton.play_button();
+
+
 while running:
     # resets screen
     screen.fill(0)
@@ -78,19 +85,27 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse = pygame.mouse.get_pos()
+            
+            if((not wave_in_progress) and play_button.surface.get_rect(topleft = (play_button.loc[0], play_button.loc[1])).collidepoint(mouse[0],mouse[1])):
+                #print("got here\n")
+                wave_in_progress = True
     # Does for all enimies
-    for enemy in enemies:
-       # for xy in enemy.path:
-        #    screen.blit(help_surface, xy);
-        coords = enemy.move()
+    if(wave_in_progress):
+        for enemy in enemies:
+        # for xy in enemy.path:
+            #    screen.blit(help_surface, xy);
+            enemy.move()
+            screen.blit(enemy_surface, enemy.loc);
         
     # Red Walss
     screen.blit(wall_surface, (0, 0));
     screen.blit(wall_surface2, (200, 0));
     screen.blit(wall_surface, (1180, 0));
     screen.blit(wall_surface2, (100, 410));
-    
-    screen.blit(enemy_surface, coords);
+    if(not wave_in_progress):
+        screen.blit(play_button.surface, (play_button.loc[0], play_button.loc[1]))
 
     # flip() the display to put your work on screen
     pygame.display.flip()
