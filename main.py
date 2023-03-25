@@ -1,6 +1,7 @@
 import pygame
 import playbutton
 import enemy
+import lives
 # pygame setup
 pygame.init()
 WIDTH = 1280
@@ -12,6 +13,10 @@ running = True
 enemies = []
 
 
+#life display:
+life_display = lives.Lives(1100, 100)
+life_display.lives = 50
+life_display.update()
 
 # Red Walls
 wall_surface = pygame.Surface((100,720))
@@ -66,11 +71,14 @@ while running:
                 i += 1
             else:
                 del enemies[i]
+                life_display.lives -= 1;
+                life_display.update();
     # Red Walss
     screen.blit(wall_surface, (0, 0));
     screen.blit(wall_surface2, (200, 0));
     screen.blit(wall_surface, (1180, 0));
     screen.blit(wall_surface2, (100, 410));
+    screen.blit(life_display.text, life_display.loc)
     if(not wave_in_progress):
         screen.blit(play_button.surface, (play_button.loc[0], play_button.loc[1]))
 
