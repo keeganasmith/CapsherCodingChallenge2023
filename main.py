@@ -52,6 +52,8 @@ while running:
             
             if((not wave_in_progress) and play_button.surface.get_rect(topleft = (play_button.loc[0], play_button.loc[1])).collidepoint(mouse[0],mouse[1])):
                 wave_in_progress = True
+                #start wave
+                
     # Does for all enimies
     if(wave_in_progress):
         i = 0
