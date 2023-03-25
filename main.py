@@ -3,7 +3,9 @@ import playbutton
 import enemy
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((1280, 720))
+WIDTH = 1280
+HEIGHT = 720
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 running = True
 
@@ -52,12 +54,16 @@ while running:
                 wave_in_progress = True
     # Does for all enimies
     if(wave_in_progress):
-        for enemy in enemies:
+        i = 0
+        while(i < len(enemies)):
         # for xy in enemy.path:
             #    screen.blit(help_surface, xy);
-            enemy.move()
-            screen.blit(enemy_surface, enemy.loc);
-        
+            enemies[i].move()
+            if(enemies[i].loc != enemies[i].path[len(enemies[i].path)-1]):
+                screen.blit(enemy_surface, enemies[i].loc)
+                i += 1
+            else:
+                del enemies[i]
     # Red Walss
     screen.blit(wall_surface, (0, 0));
     screen.blit(wall_surface2, (200, 0));

@@ -40,4 +40,8 @@ class Enemy:
             self.loc = (self.loc[0] - self.speed*math.sin(degrs), self.loc[1] + self.speed*math.cos(degrs))
             print("New Loc: ", self.loc)
         return self.loc
+    def out_of_bounds(self, x, y):
+        if(self.loc[0] < 0 or self.loc[1] < 0 or self.loc[0] > x or self.loc[1] > y):
+            return True
+        return False
 
