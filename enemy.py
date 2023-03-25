@@ -11,7 +11,8 @@ class Enemy:
         self.spot = 1
         # Starting point
         self.loc = self.path[0]
-        
+        self.surface = pygame.Surface((50,50))
+        self.surface.fill('Blue')
     def move(self):
         # If enemy is at waypoint advance to next waypoint
         if self.spot < len(self.path) and self.loc == self.path[self.spot]:
@@ -33,15 +34,16 @@ class Enemy:
             # Else
             elif bot != 0:
                 degrs = math.tan(top/bot)
-            print("Degrees: ", degrs)
-            print(self.loc)
-            print("Spot: ", self.spot)
+            #print("Degrees: ", degrs)
+            #print(self.loc)
+            #print("Spot: ", self.spot)
             # Creates new location
             self.loc = (self.loc[0] - self.speed*math.sin(degrs), self.loc[1] + self.speed*math.cos(degrs))
-            print("New Loc: ", self.loc)
+            #print("New Loc: ", self.loc)
         return self.loc
     def out_of_bounds(self, x, y):
         if(self.loc[0] < 0 or self.loc[1] < 0 or self.loc[0] > x or self.loc[1] > y):
             return True
         return False
-
+    def to_string(self):
+        return str(self.loc)
