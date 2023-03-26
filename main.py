@@ -73,7 +73,7 @@ while running:
         # for xy in enemy.path:
             #    screen.blit(help_surface, xy);
             enemies[i].move()
-            if(enemies[i].loc != enemies[i].path[len(enemies[i].path)-1]):
+            if(not enemies[i].escaped):
                 screen.blit(enemies[i].surface, enemies[i].loc)
                 i += 1
             else:
