@@ -68,12 +68,16 @@ class Enemy:
             # Creates new location
             if(self.direction == 'Up'):
                 self.loc[1] -= self.speed
+                self.cp[1] -= self.speed
             if(self.direction == 'Down'):
                 self.loc[1] += self.speed
+                self.cp[1] += self.speed
             if(self.direction == 'Left'):
                 self.loc[0] -= self.speed
+                self.cp[0] -= self.speed
             if(self.direction == 'Right'):
                 self.loc[0] += self.speed
+                self.cp[0] += self.speed
             #self.loc = (self.loc[0] - self.speed*math.sin(degrs), self.loc[1] + self.speed*math.cos(degrs))
             #print("New Loc: ", self.loc)
         return self.loc
@@ -85,7 +89,7 @@ class Enemy:
         return str(self.loc)
     
     def calcCenter(self):
-        return (pygame.Surface.get_width(self.sprite)/2 + self.loc[0], pygame.Surface.get_height(self.sprite)/2 + self.loc[1])
+        return [pygame.Surface.get_width(self.surface)//2 + self.loc[0], pygame.Surface.get_height(self.surface)//2 + self.loc[1]]
     
     def get_Center(self):
         return self.cp
