@@ -3,7 +3,7 @@ import random
 class Round:
     
     def __init__(self):
-        self.rounds = [[{"Fast":2, "Norm": 3}, 20], [{"Norm": 5}, 50]] #add as many rounds as possible. Dictionary is the type: quantity, second number is delay
+        self.rounds = [[{"Norm":3}, 40] , [{"Norm": 5}, 50],[{"Fast":1, "Norm": 4}, 20]] #add as many rounds as possible. Dictionary is the type: quantity, second number is delay
 
         self.num_enemies = 2
         self.delay = 10
