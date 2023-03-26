@@ -61,15 +61,15 @@ while running:
                 #start wave
                 current_round.next_round()
                 enemies_to_be_deployed = current_round.create_to_be_deployed();
-                print(enemies_to_be_deployed)
+                #print(enemies_to_be_deployed)
     if(len(enemies_to_be_deployed) != 0 and counter % current_round.delay == 0):
-        print("got here\n")
+        #print("got here\n")
         enemies.append(enemies_to_be_deployed.pop())
     # Does for all enimies
     if(wave_in_progress):
         i = 0
         while(i < len(enemies)):
-            print(str(i) + ":" + enemies[i].to_string())
+            #print(str(i) + ":" + enemies[i].to_string())
         # for xy in enemy.path:
             #    screen.blit(help_surface, xy);
             enemies[i].move()
