@@ -25,6 +25,9 @@ class Enemy:
             self.direction = "Up"
         self.escaped = False
         self.health = 1
+        
+        self.cp = self.calcCenter()
+        
     def move(self):
         # If enemy is at waypoint advance to next waypoint
         if self.spot < len(self.path) and ((self.direction == "Down" and self.loc[1] >= self.path[self.spot][1]) or (self.direction == "Up" and self.loc[1] <= self.path[self.spot][1]) or (self.direction == "Left" and self.loc[0] <= self.path[self.spot][0]) or (self.direction == "Right" and self.loc[0] >= self.path[self.spot][0])):
@@ -80,6 +83,12 @@ class Enemy:
         return False
     def to_string(self):
         return str(self.loc)
+    
+    def calcCenter(self):
+        return (pygame.Surface.get_width(self.sprite)/2 + self.loc[0], pygame.Surface.get_height(self.sprite)/2 + self.loc[1])
+    
+    def get_Center(self):
+        return self.cp
     
 class Fast_enemy(Enemy):
     def __init__(self):
