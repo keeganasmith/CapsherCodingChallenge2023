@@ -3,6 +3,7 @@ import playbutton
 import enemy
 import lives
 import round
+import money
 # pygame setup
 pygame.init()
 WIDTH = 1280
@@ -11,14 +12,19 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 running = True
 
+
 enemies = []
 enemies_to_be_deployed = []
 #round setup
 current_round = round.Round()
 #life display:
-life_display = lives.Lives(1100, 100)
+life_display = lives.Lives(1050, 75)
 life_display.lives = 50
 life_display.update()
+
+#money display:
+money_display = money.Money(1050, 25)
+money_display.money = 100
 
 # Red Walls
 wall_surface = pygame.Surface((100,720))
@@ -88,6 +94,7 @@ while running:
     screen.blit(wall_surface, (1180, 0));
     screen.blit(wall_surface2, (100, 410));
     screen.blit(life_display.text, life_display.loc)
+    screen.blit(money_display.text, money_display.loc)
     if(not wave_in_progress):
         screen.blit(play_button.surface, (play_button.loc[0], play_button.loc[1]))
 
