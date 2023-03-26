@@ -6,24 +6,25 @@ class Tower:
         self.loc = (210, 230)
         self.range = 100
         self.shots = []
-        self.fire_rate = 1000
-        self.sprite = pygame.Surface((70,70))
-        self.sprite.fill('Orange')
+        self.fire_rate = 100
+        self.surface = pygame.Surface((70,70))
+        self.surface.fill('Orange')
         self.cp = self.calcCenter()
         self.last_shot = -5;
-        
+    
     def calcCenter(self):
-        return (pygame.Surface.get_width(self.sprite)/2 + self.loc[0], pygame.Surface.get_height(self.sprite)/2 + self.loc[1])
+        return (pygame.Surface.get_width(self.surface)//2 + self.loc[0], pygame.Surface.get_height(self.surface)//2 + self.loc[1])
         
     def inRadius(self, enemy):
         return pygame.math.Vector2(self.cp).distance_to(enemy.get_Center()) <= self.range
 
 
-    def shoot(self, enimies):
+    def shoot(self, enimies, projectiles_on_screen = []):
         for enemy in enimies:
             if(self.inRadius(enemy) and pygame.time.get_ticks() - self.last_shot >= self.fire_rate):
                 print("Adding shot")
-                self.shots.append(Projectile(self.calcAngle(enemy), self.cp))
+                projectiles_on_screen.append(Projectile.Projectile(self.calcAngle(enemy), self.cp))
+                #self.shots.append(Projectile.Projectile(self.calcAngle(enemy), self.cp))
                 self.last_shot = pygame.time.get_ticks()
                 
     def updateShots(self, scr, enimies):
@@ -32,10 +33,6 @@ class Tower:
             shot.update()
             shot.draw(scr)
             
-         
-    def draw(self, scr):
-        scr.blit(self.sprite, self.loc)
-        
     def calcAngle(self, enemy):
         centp = enemy.get_Center()
         bot = self.cp[0]- centp[0]
@@ -68,3 +65,7 @@ class Tower:
             degrs = math.atan(top/bot)
         print("Degrees: ", degrs)
         return degrs
+    def draw(self, scr):
+        scr.blit(self.surface, self.loc)
+        
+    

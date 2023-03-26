@@ -4,6 +4,8 @@ import enemy
 import lives
 import round
 import money
+import tower
+import collisions
 # pygame setup
 pygame.init()
 WIDTH = 1280
@@ -37,14 +39,15 @@ wall_surface2.fill('Red')
 #NOTE: This should probably be in the enemy class but oh well
 #
 
-
+#towers
+towers = [tower.Tower()]
 # Help see waypoints
 help_surface = pygame.Surface((50,50))
 help_surface.fill('Yellow')
 
 # Can add as many enimies as you want
 #enemies.append(enemy.Enemy())
-
+projectiles_on_screen = []
 #boolean for keeping track of wave
 wave_in_progress = False
 
@@ -79,7 +82,13 @@ while running:
         # for xy in enemy.path:
             #    screen.blit(help_surface, xy);
             enemies[i].move()
-            if(not enemies[i].escaped):
+            j = 0;
+            collisions.collision_detection(enemies[i], projectiles_on_screen)
+            if(enemies[i].health <= 0):
+                del enemies[i]
+                money_display.money += 10
+                money_display.update();
+            elif(not enemies[i].escaped):
                 screen.blit(enemies[i].surface, enemies[i].loc)
                 i += 1
             else:
@@ -88,6 +97,16 @@ while running:
                 life_display.update();
         if(len(enemies_to_be_deployed) == 0 and len(enemies) == 0):
             wave_in_progress = False
+        i = 0
+        while(i < len(towers)):
+            towers[i].shoot(enemies, projectiles_on_screen)
+            i += 1
+        i = 0
+        while(i < len(projectiles_on_screen)):
+            projectiles_on_screen[i].update()
+            projectiles_on_screen[i].draw(screen)
+            i +=1
+        
     # Red Walss
     screen.blit(wall_surface, (0, 0));
     screen.blit(wall_surface2, (200, 0));
@@ -95,6 +114,10 @@ while running:
     screen.blit(wall_surface2, (100, 410));
     screen.blit(life_display.text, life_display.loc)
     screen.blit(money_display.text, money_display.loc)
+    i = 0
+    while(i < len(towers)):
+        screen.blit(towers[i].surface, towers[i].loc)
+        i += 1
     if(not wave_in_progress):
         screen.blit(play_button.surface, (play_button.loc[0], play_button.loc[1]))
 
