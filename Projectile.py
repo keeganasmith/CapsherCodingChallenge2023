@@ -8,9 +8,10 @@ class Projectile:
         self.angle = angle
         self.loc = loc
         self.sprite.fill('Yellow')
+        self.rect = self.sprite.get_rect(topleft = self.loc)
         
     def update(self):
         self.loc = (self.loc[0] + self.shot_speed*math.cos(self.angle), self.loc[1] + self.shot_speed*math.sin(self.angle))
-        
+        self.rect = self.sprite.get_rect(topleft = self.loc)
     def draw(self, scr):
         scr.blit(self.sprite, self.loc);

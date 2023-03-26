@@ -15,6 +15,7 @@ class Enemy:
         self.surface.fill('Blue')
         next_point = self.path[self.spot]
         old_point = self.path[self.spot-1]
+        self.rect = self.surface.get_rect(topleft = self.loc);
         if(next_point[0] < old_point[0]):
             self.direction = "Left"
         elif(next_point[0] > old_point[0]):
@@ -69,15 +70,19 @@ class Enemy:
             if(self.direction == 'Up'):
                 self.loc[1] -= self.speed
                 self.cp[1] -= self.speed
+                self.rect = self.rect.move(0, -self.speed)
             if(self.direction == 'Down'):
                 self.loc[1] += self.speed
                 self.cp[1] += self.speed
+                self.rect = self.rect.move(0, self.speed)
             if(self.direction == 'Left'):
                 self.loc[0] -= self.speed
                 self.cp[0] -= self.speed
+                self.rect = self.rect.move(-self.speed, 0)
             if(self.direction == 'Right'):
                 self.loc[0] += self.speed
                 self.cp[0] += self.speed
+                self.rect = self.rect.move(self.speed, 0)
             #self.loc = (self.loc[0] - self.speed*math.sin(degrs), self.loc[1] + self.speed*math.cos(degrs))
             #print("New Loc: ", self.loc)
         return self.loc
