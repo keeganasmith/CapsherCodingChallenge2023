@@ -1,3 +1,5 @@
+import pygame
+import math
 class Projectile:
     def __init__(self, angle, loc, damage = 10, shot_speed = 20, sprite = pygame.Surface((20, 20))):
         self.damage = damage
