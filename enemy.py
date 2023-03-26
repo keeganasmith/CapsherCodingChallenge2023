@@ -24,6 +24,7 @@ class Enemy:
         elif(next_point[1] < old_point[1]):
             self.direction = "Up"
         self.escaped = False
+        self.health = 1
     def move(self):
         # If enemy is at waypoint advance to next waypoint
         if self.spot < len(self.path) and ((self.direction == "Down" and self.loc[1] >= self.path[self.spot][1]) or (self.direction == "Up" and self.loc[1] <= self.path[self.spot][1]) or (self.direction == "Left" and self.loc[0] <= self.path[self.spot][0]) or (self.direction == "Right" and self.loc[0] >= self.path[self.spot][0])):
@@ -86,3 +87,10 @@ class Fast_enemy(Enemy):
         self.speed = 7
         self.surface = pygame.Surface((50,50))
         self.surface.fill('White')
+class Tank_enemy(Enemy):
+    def __init__(self):
+        super().__init__()
+        self.speed = 2
+        self.surface = pygame.Surface((50, 50))
+        self.surface.fill('Purple')
+        self.health = 5
