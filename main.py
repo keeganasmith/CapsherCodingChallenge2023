@@ -6,6 +6,9 @@ import round
 import money
 import tower
 import collisions
+import shopbutton
+import shop
+
 # pygame setup
 pygame.init()
 WIDTH = 1280
@@ -50,8 +53,13 @@ help_surface.fill('Yellow')
 projectiles_on_screen = []
 #boolean for keeping track of wave
 wave_in_progress = False
+shop_open = False
 
 play_button = playbutton.play_button();
+
+shop_button = shopbutton.shop_button()
+
+shop_panel = shop.Shop()
 
 counter = 0;
 while running:
@@ -71,6 +79,28 @@ while running:
                 current_round.next_round()
                 enemies_to_be_deployed = current_round.create_to_be_deployed();
                 #print(enemies_to_be_deployed)
+            
+            #this checks to see if player clicked on any towers in shop
+            if shop_open:
+                towers = shop_panel.checkaction(mouse, towers) 
+
+            #code to open shop on clicking the shop or close the shop depending on current state
+            if (not shop_open) and shop_button.surface.get_rect(topleft = (shop_button.loc[0], shop_button.loc[1])).collidepoint(mouse[0],mouse[1]):
+                #opens shop
+                shop_open = True
+                print(shop_open)
+            elif (shop_open) and shop_button.surface.get_rect(topleft = (shop_button.loc[0], shop_button.loc[1])).collidepoint(mouse[0],mouse[1]):
+                #closes shop
+                shop_open = False
+                print(shop_open)
+
+            
+
+                
+
+            
+                
+
     if(len(enemies_to_be_deployed) != 0 and counter % current_round.delay == 0):
         #print("got here\n")
         enemies.append(enemies_to_be_deployed.pop())
@@ -114,12 +144,19 @@ while running:
     screen.blit(wall_surface2, (100, 410));
     screen.blit(life_display.text, life_display.loc)
     screen.blit(money_display.text, money_display.loc)
+    screen.blit(shop_button.surface, (shop_button.loc[0], shop_button.loc[1]))
     i = 0
     while(i < len(towers)):
         screen.blit(towers[i].surface, towers[i].loc)
         i += 1
     if(not wave_in_progress):
         screen.blit(play_button.surface, (play_button.loc[0], play_button.loc[1]))
+    
+    if shop_open:
+        shop_panel.render(screen)
+
+
+
 
     # flip() the display to put your work on screen
     pygame.display.flip()
