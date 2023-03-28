@@ -2,8 +2,8 @@ import pygame
 import Projectile
 import math
 class Tower:
-    def __init__(self):
-        self.loc = (210, 230)
+    def __init__(self, x_coord = 210, y_coord = 230):
+        self.loc = (x_coord, y_coord)
         self.range = 100
         self.shots = []
         self.fire_rate = 100
