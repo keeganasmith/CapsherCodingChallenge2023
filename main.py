@@ -36,7 +36,7 @@ wall_surface = pygame.Surface((100,720))
 wall_surface.fill('Red')
 wall_surface2 = pygame.Surface((980,310))
 wall_surface2.fill('Red')
-
+wall_surfaces = [[wall_surface, [0, 0]], [wall_surface2, [200, 0]], [wall_surface, [1180, 0]], [wall_surface2, [100, 410]]]
 # Enemy
 #
 #NOTE: This should probably be in the enemy class but oh well
@@ -82,8 +82,9 @@ while running:
             
             #this checks to see if player clicked on any towers in shop
             if shop_open:
-                towers = shop_panel.checkaction(mouse, towers) 
-
+                result = shop_panel.checkaction(mouse, towers, screen, wall_surfaces, enemies) 
+                if(result == "exit"):
+                    running = False
             #code to open shop on clicking the shop or close the shop depending on current state
             if (not shop_open) and shop_button.surface.get_rect(topleft = (shop_button.loc[0], shop_button.loc[1])).collidepoint(mouse[0],mouse[1]):
                 #opens shop
@@ -138,10 +139,9 @@ while running:
             i +=1
         
     # Red Walss
-    screen.blit(wall_surface, (0, 0));
-    screen.blit(wall_surface2, (200, 0));
-    screen.blit(wall_surface, (1180, 0));
-    screen.blit(wall_surface2, (100, 410));
+    for surface in wall_surfaces:
+        screen.blit(surface[0], surface[1])
+
     screen.blit(life_display.text, life_display.loc)
     screen.blit(money_display.text, money_display.loc)
     screen.blit(shop_button.surface, (shop_button.loc[0], shop_button.loc[1]))
