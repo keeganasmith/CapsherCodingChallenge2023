@@ -25,17 +25,23 @@ class Shop:
             slot.render(display)
 
     #this function is supposed to check if any tower in shop is clicked and then calls the add tower function for that class if it is
-    def checkaction(self, mouse, towers):
+    def checkaction(self, mouse, towers, screen, wall_surfaces, enemies):
         #loops through each tower type in panel
         for i in range(len(self.slots)):
             #checks to see if tower type is clicked and adds tower to list if it is
             if self.slots[i].surface.get_rect(topleft = (self.slots[i].loc[0], self.slots[i].loc[1])).collidepoint(mouse[0],mouse[1]):
-                coords = self.slots[i].addtower()
+                
+                coords = self.slots[i].addtower(screen, wall_surfaces, enemies, towers)
+                if(coords == [-2, -2]):
+                    return "notexit"
+                if(coords == [-1, -1]):
+                    return "exit"
                 #checks for tower type to know which one to add to list and passes coordinates that it gets from user click
                 if i == 0:
                     #adds normal tower to list
-                    towers.append(tower.Tower(coords[0],coords[1]))
+                    towers.append(tower.Tower(center_coord= coords))
                 #add more if statements for other tower types in shop
-
-        return towers
+                return "notexit"
+        return "notexit"
+        #return towers
 

@@ -2,13 +2,18 @@ import pygame
 import Projectile
 import math
 class Tower:
-    def __init__(self, x_coord = 210, y_coord = 230):
+    def __init__(self, x_coord = 210, y_coord = 230, center_coord = [-1, -1], height = 70, width = 70, color = 'Orange', firerate = 900):
+        self.surface = pygame.Surface((height,width))
+        self.surface.fill(color)
+        if(center_coord != [-1, -1]):
+            x_coord = center_coord[0] - (width //2);
+            y_coord = center_coord[1] - (width //2)
+
         self.loc = (x_coord, y_coord)
         self.range = 150
         self.shots = []
-        self.fire_rate = 75
-        self.surface = pygame.Surface((70,70))
-        self.surface.fill('Orange')
+        self.fire_rate = firerate #higher means slower!!!
+        
         self.cp = self.calcCenter()
         self.last_shot = -5;
     
