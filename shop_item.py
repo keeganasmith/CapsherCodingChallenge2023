@@ -50,6 +50,16 @@ class Shop_Item:
                 screen.blit(enemies[i].surface, enemies[i].loc)
                 i += 1
             screen.blit(self.tower.surface, (pygame.mouse.get_pos()[0] - (self.tower.surface.get_width() //2 ), pygame.mouse.get_pos()[1] - self.tower.surface.get_height() //2))
+            #pygame.draw.circle(screen, "Blue", pygame.mouse.get_pos(), self.tower.range)
+            IMAGE = pygame.Surface((2*self.tower.range, 2*self.tower.range), pygame.SRCALPHA)
+            pygame.draw.circle(IMAGE, "Blue", (IMAGE.get_width()//2, IMAGE.get_height() //2), self.tower.range)
+
+            alpha_surface = pygame.Surface(IMAGE.get_size(), pygame.SRCALPHA)
+            alpha_surface.fill((255, 255, 255, 90))
+            
+            IMAGE.blit(alpha_surface, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+
+            screen.blit(IMAGE, (pygame.mouse.get_pos()[0] - IMAGE.get_width()//2, pygame.mouse.get_pos()[1] - IMAGE.get_height()//2))
             font = pygame.font.Font('freesansbold.ttf', 32);
             text = font.render('Press any key to cancel', True, 'black')
             screen.blit(text, (600, 200))
