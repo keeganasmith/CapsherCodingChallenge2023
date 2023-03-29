@@ -88,7 +88,8 @@ while running:
             
             #this checks to see if player clicked on any towers in shop
             if shop_open:
-                result = shop_panel.checkaction(mouse, towers, screen, wall_surfaces, enemies, path_surfaces) 
+                result = shop_panel.checkaction(mouse, towers, screen, wall_surfaces, enemies, path_surfaces, money_display) 
+                money_display.update();
                 if(result == "exit"):
                     running = False
             #code to open shop on clicking the shop or close the shop depending on current state

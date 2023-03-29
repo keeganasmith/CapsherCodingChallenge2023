@@ -1,6 +1,7 @@
 import pygame
 import shop_item
 import tower
+import money
 
 class Shop:
     #default x_coord and y_coord of top left of shop box
@@ -34,7 +35,7 @@ class Shop:
         return bounds.contains(rec)
 
     #this function is supposed to check if any tower in shop is clicked and then calls the add tower function for that class if it is
-    def checkaction(self, mouse, towers, screen, wall_surfaces, enemies, path_surfaces):
+    def checkaction(self, mouse, towers, screen, wall_surfaces, enemies, path_surfaces, cash):
         #loops through each tower type in panel
         for i in range(len(self.slots)):
             #checks to see if tower type is clicked and adds tower to list if it is
@@ -48,8 +49,11 @@ class Shop:
                 #checks for tower type to know which one to add to list and passes coordinates that it gets from user click
                 if i == 0:
                     #adds normal tower to list
-                    if self.checkPlacement(screen, path_surfaces, coords, rec.width, rec.height):
-                        towers.append(tower.Tower(center_coord= coords))
+                    if self.checkPlacement(screen, path_surfaces, coords, rec.width, rec.height) and cash.money >= self.slots[i].cost:
+                        tow = tower.Tower(center_coord= coords)
+                        towers.append(tow)
+                        cash.money -= tow.getCost()
+                        
                 #add more if statements for other tower types in shop
                 return "notexit"
         return "notexit"

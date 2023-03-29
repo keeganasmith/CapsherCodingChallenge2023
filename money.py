@@ -8,4 +8,3 @@ class Money:
         self.text = self.font.render(f'Money: {self.money}', True, 'black')
     def update(self):
         self.text = self.font.render(f'Money: {self.money}', True, 'black')
-

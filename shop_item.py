@@ -10,7 +10,7 @@ class Shop_Item:
         self.rect = self.surface.get_rect()
         self.rect.topleft = pos
         self.loc = [self.rect.topleft[0], self.rect.topleft[1]]
-
+        self.cost = 50
 
     def render(self, display):
         display.blit(self.surface, self.rect.topleft)

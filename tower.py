@@ -2,7 +2,7 @@ import pygame
 import Projectile
 import math
 class Tower:
-    def __init__(self, x_coord = 210, y_coord = 230, center_coord = [-1, -1], height = 70, width = 70, color = 'Orange', firerate = 900):
+    def __init__(self, x_coord = 210, y_coord = 230, center_coord = [-1, -1], height = 70, width = 70, color = 'Orange', firerate = 900, cost = 50):
         self.surface = pygame.Surface((height,width))
         self.surface.fill(color)
         if(center_coord != [-1, -1]):
@@ -16,12 +16,17 @@ class Tower:
         
         self.cp = self.calcCenter()
         self.last_shot = -5;
+        self.cost = cost
     
     def calcCenter(self):
         return (pygame.Surface.get_width(self.surface)//2 + self.loc[0], pygame.Surface.get_height(self.surface)//2 + self.loc[1])
         
     def inRadius(self, enemy):
         return pygame.math.Vector2(self.cp).distance_to(enemy.get_Center()) <= self.range
+    
+    def getCost(self):
+        print("Cost:", self.cost)
+        return self.cost
 
 
     def shoot(self, enimies, projectiles_on_screen = []):
