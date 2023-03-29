@@ -8,7 +8,7 @@ import tower
 import collisions
 import shopbutton
 import shop
-
+import radius
 # pygame setup
 pygame.init()
 WIDTH = 1280
@@ -61,7 +61,8 @@ play_button = playbutton.play_button();
 shop_button = shopbutton.shop_button()
 
 shop_panel = shop.Shop()
-
+tower_selected = False
+selected_tower = tower.Tower()
 counter = 0;
 while running:
     # resets screen
@@ -69,16 +70,21 @@ while running:
     
     # for surface in path_surfaces:
     #      screen.blit(surface[0], surface[1])
-         
-         
+    
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
+            tower_selected = False
             mouse = pygame.mouse.get_pos()
-            
+            for tow in towers:
+                #print("got here")
+                if(tow.surface.get_rect(topleft = tow.loc).collidepoint(mouse)):
+                    #print("got here")
+                    tower_selected = True;
+                    selected_tower = tow;
             if((not wave_in_progress) and play_button.surface.get_rect(topleft = (play_button.loc[0], play_button.loc[1])).collidepoint(mouse[0],mouse[1])):
                 wave_in_progress = True
                 #start wave
@@ -156,6 +162,8 @@ while running:
     if shop_open:
         shop_panel.render(screen)
 
+    if tower_selected:
+        radius.tower_is_selected(screen, selected_tower)
 
     # flip() the display to put your work on screen
     pygame.display.flip()
