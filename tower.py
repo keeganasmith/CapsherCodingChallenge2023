@@ -76,7 +76,9 @@ class Tower:
         degrs = math.atan(top/bot)
         #print("Degrees: ", degrs)
         return [degrs, horizontal_coefficient, vertical_coefficient]
+    
     def draw(self, scr):
         scr.blit(self.surface, self.loc)
+    
         
     

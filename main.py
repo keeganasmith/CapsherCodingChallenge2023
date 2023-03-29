@@ -37,11 +37,12 @@ wall_surface.fill('Red')
 wall_surface2 = pygame.Surface((980,310))
 wall_surface2.fill('Red')
 wall_surfaces = [[wall_surface, [0, 0]], [wall_surface2, [200, 0]], [wall_surface, [1180, 0]], [wall_surface2, [100, 410]]]
-# Enemy
-#
-#NOTE: This should probably be in the enemy class but oh well
-#
 
+path_surface = pygame.Surface((100,310))
+path_surface.fill('Black')
+path_surface2 = pygame.Surface((1080,100))
+path_surface2.fill('Black')
+path_surfaces = [[path_surface, (100, 0)], [path_surface, (1080, 410)], [path_surface2, (100, 310)]]
 #towers
 towers = [tower.Tower()]
 # Help see waypoints
@@ -65,6 +66,11 @@ counter = 0;
 while running:
     # resets screen
     screen.fill(0)
+    
+    # for surface in path_surfaces:
+    #      screen.blit(surface[0], surface[1])
+         
+         
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
@@ -82,7 +88,7 @@ while running:
             
             #this checks to see if player clicked on any towers in shop
             if shop_open:
-                result = shop_panel.checkaction(mouse, towers, screen, wall_surfaces, enemies) 
+                result = shop_panel.checkaction(mouse, towers, screen, wall_surfaces, enemies, path_surfaces) 
                 if(result == "exit"):
                     running = False
             #code to open shop on clicking the shop or close the shop depending on current state
@@ -95,12 +101,6 @@ while running:
                 shop_open = False
                 print(shop_open)
 
-            
-
-                
-
-            
-                
 
     if(len(enemies_to_be_deployed) != 0 and counter % current_round.delay == 0):
         #print("got here\n")
@@ -138,7 +138,7 @@ while running:
             projectiles_on_screen[i].draw(screen)
             i +=1
         
-    # Red Walss
+    # Red Walls
     for surface in wall_surfaces:
         screen.blit(surface[0], surface[1])
 
@@ -154,8 +154,6 @@ while running:
     
     if shop_open:
         shop_panel.render(screen)
-
-
 
 
     # flip() the display to put your work on screen
