@@ -6,6 +6,8 @@ class Shop_Item:
     def __init__(self, pos, tower_type = "norm"):
         #size of tower in shop
         self.tower = tower.Tower()
+        self.cost = 50
+
         
         #if(tower_type == "blah"):
         #   self.tower = tower.blah()
@@ -13,10 +15,16 @@ class Shop_Item:
         self.rect = self.surface.get_rect()
         self.rect.topleft = pos
         self.loc = [self.rect.topleft[0], self.rect.topleft[1]]
-        self.cost = 50
+
+        self.font = pygame.font.Font('freesansbold.ttf', 16)
+        self.text = self.font.render(f'Cost: {self.cost}', True, 'black')
+        
 
     def render(self, display):
         display.blit(self.surface, self.rect.topleft)
+        #this line displays cost underneath tower and should auto scale by towers height
+        display.blit(self.text, [self.loc[0], self.loc[1]+self.rect.height])
+
 
     def addtower(self, screen, wall_surfaces, enemies, towers):
 
