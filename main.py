@@ -9,6 +9,7 @@ import collisions
 import shopbutton
 import shop
 import radius
+import start_screen
 # pygame setup
 pygame.init()
 WIDTH = 1280
@@ -17,7 +18,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 running = True
 
-
+start_display = start_screen.start_screen()
 enemies = []
 enemies_to_be_deployed = []
 #round setup
@@ -44,7 +45,7 @@ path_surface2 = pygame.Surface((1080,100))
 path_surface2.fill('Black')
 path_surfaces = [[path_surface, (100, 0)], [path_surface, (1080, 410)], [path_surface2, (100, 310)]]
 #towers
-towers = [tower.Tower()]
+towers = []
 # Help see waypoints
 help_surface = pygame.Surface((50,50))
 help_surface.fill('Yellow')
@@ -64,6 +65,8 @@ shop_panel = shop.Shop()
 tower_selected = False
 selected_tower = tower.Tower()
 counter = 0;
+
+not_started = True;
 while running:
     # resets screen
     screen.fill(0)
@@ -79,13 +82,16 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             tower_selected = False
             mouse = pygame.mouse.get_pos()
-            for tow in towers:
+            if(not_started):
+                if(start_display.start_button.get_rect(topleft = start_display.start_button_loc).collidepoint(mouse)):
+                    not_started = False
+            for tow in towers: #checks if a tower has been selected and displays the towers radius
                 #print("got here")
                 if(tow.surface.get_rect(topleft = tow.loc).collidepoint(mouse)):
                     #print("got here")
                     tower_selected = True;
                     selected_tower = tow;
-            if((not wave_in_progress) and play_button.surface.get_rect(topleft = (play_button.loc[0], play_button.loc[1])).collidepoint(mouse[0],mouse[1])):
+            if((not wave_in_progress) and play_button.surface.get_rect(topleft = (play_button.loc[0], play_button.loc[1])).collidepoint(mouse[0],mouse[1])): #Checks if the player has pressed the round start button, if so, starts playing
                 wave_in_progress = True
                 #start wave
                 current_round.next_round()
@@ -108,7 +114,12 @@ while running:
                 shop_open = False
                 print(shop_open)
 
+    if(not_started):
 
+        screen.blit(start_display.surface, (0, 0))
+        pygame.display.flip()
+        clock.tick(60)
+        continue;
     if(len(enemies_to_be_deployed) != 0 and counter % current_round.delay == 0):
         #print("got here\n")
         enemies.append(enemies_to_be_deployed.pop())
