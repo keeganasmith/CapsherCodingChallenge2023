@@ -18,7 +18,7 @@ class Shop:
         #self.slots.append(shop_item("Images/coinIcon.png", (10, 360)))
         #self.slots.append(shop_item("Images/manapotionIcon.png", (110, 360)))
         self.slots.append(shop_item.Shop_Item((320, 470)))
-
+        self.slots.append(shop_item.Shop_Item((320 + tower.Tower().surface.get_width() + 10, 470), "slow"))
         
     def render(self, display):
         display.blit(self.surface, self.rect) 
@@ -40,6 +40,8 @@ class Shop:
         for i in range(len(self.slots)):
             #checks to see if tower type is clicked and adds tower to list if it is
             if self.slots[i].surface.get_rect(topleft = (self.slots[i].loc[0], self.slots[i].loc[1])).collidepoint(mouse[0],mouse[1]):
+                if(cash.money < self.slots[i].cost):
+                    return "notexit"
                 rec = self.slots[i].surface.get_rect(topleft = (self.slots[i].loc[0], self.slots[i].loc[1]))
                 coords = self.slots[i].addtower(screen, wall_surfaces, enemies, towers)
                 if(coords == [-2, -2]):
@@ -55,6 +57,11 @@ class Shop:
                         cash.money -= tow.getCost()
                         
                 #add more if statements for other tower types in shop
+                if i == 1:
+                    if self.checkPlacement(screen, path_surfaces, coords, rec.width, rec.height):
+                        tow = tower.slow_tower(center_coords = coords)
+                        towers.append(tow)
+                        cash.money -= tow.getCost()
                 return "notexit"
         return "notexit"
         #return towers
