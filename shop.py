@@ -19,7 +19,7 @@ class Shop:
         #self.slots.append(shop_item("Images/manapotionIcon.png", (110, 360)))
         self.slots.append(shop_item.Shop_Item((320, 470)))
         self.slots.append(shop_item.Shop_Item((320 + tower.Tower().surface.get_width() + 10, 470), "slow"))
-        
+        self.slots.append(shop_item.Shop_Item((320 + tower.Tower().surface.get_width() + 10 + tower.slow_tower().surface.get_width() + 10, 470), "aoe"))
     def render(self, display):
         display.blit(self.surface, self.rect) 
         for slot in self.slots:
@@ -60,6 +60,11 @@ class Shop:
                 if i == 1:
                     if self.checkPlacement(screen, path_surfaces, coords, rec.width, rec.height):
                         tow = tower.slow_tower(center_coords = coords)
+                        towers.append(tow)
+                        cash.money -= tow.getCost()
+                if i ==2:
+                    if self.checkPlacement(screen, path_surfaces, coords, rec.width, rec.height):
+                        tow = tower.aoe_tower(center_coords= coords)
                         towers.append(tow)
                         cash.money -= tow.getCost()
                 return "notexit"

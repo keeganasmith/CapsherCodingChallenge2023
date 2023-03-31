@@ -120,6 +120,9 @@ while running:
         pygame.display.flip()
         clock.tick(60)
         continue;
+    # Red Walls
+    for surface in wall_surfaces:
+        screen.blit(surface[0], surface[1])
     if(len(enemies_to_be_deployed) != 0 and counter % current_round.delay == 0):
         #print("got here\n")
         enemies.append(enemies_to_be_deployed.pop())
@@ -148,6 +151,14 @@ while running:
             wave_in_progress = False
         i = 0
         while(i < len(towers)):
+            if(towers[i].type == "aoe"):
+                proj = towers[i].shoot(enemies)
+                if proj is None:
+                    i += 1
+                    continue
+                screen.blit(proj.sprite, proj.loc)
+                i += 1
+                continue
             towers[i].shoot(enemies, projectiles_on_screen)
             i += 1
         i = 0
@@ -156,9 +167,7 @@ while running:
             projectiles_on_screen[i].draw(screen)
             i +=1
         
-    # Red Walls
-    for surface in wall_surfaces:
-        screen.blit(surface[0], surface[1])
+    
 
     screen.blit(life_display.text, life_display.loc)
     screen.blit(money_display.text, money_display.loc)

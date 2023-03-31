@@ -104,4 +104,11 @@ class aoe_tower(Tower):
     def __init__(self, center_coords = [-1, -1]):
         super().__init__(color = "Purple", cost = 100, center_coord = center_coords)
         self.type = "aoe"
+    def shoot(self, enemies):
+        for enemy in enemies:
+            if(self.inRadius(enemy) and pygame.time.get_ticks() - self.last_shot >= self.fire_rate):
+                angle_data = self.calcAngle(enemy)
+                proj = Projectile.flame(angle_data[0], angle_data[1],angle_data[2], self.cp)
+                return proj
         
+

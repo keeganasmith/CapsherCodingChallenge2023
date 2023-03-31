@@ -10,7 +10,9 @@ class Shop_Item:
         if(tower_type == "slow"):
             self.tower = tower.slow_tower()
             self.cost = 100
-        
+        if(tower_type == "aoe"):
+            self.tower = tower.aoe_tower()
+            self.cost = 100
         #if(tower_type == "blah"):
         #   self.tower = tower.blah()
         self.surface = self.tower.surface
