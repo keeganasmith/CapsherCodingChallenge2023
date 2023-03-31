@@ -10,6 +10,8 @@ class Enemy:
         # Current index in path enemy is heading to
         self.spot = 1
         # Starting point
+        self.slowed = False
+        #Whether the enemy has already been slowed or not
         self.loc = self.path[0]
         self.surface = pygame.Surface((50,50))
         self.surface.fill('Blue')

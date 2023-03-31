@@ -7,7 +7,9 @@ class Shop_Item:
         #size of tower in shop
         self.tower = tower.Tower()
         self.cost = 50
-
+        if(tower_type == "slow"):
+            self.tower = tower.slow_tower()
+            self.cost = 100
         
         #if(tower_type == "blah"):
         #   self.tower = tower.blah()

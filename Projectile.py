@@ -16,3 +16,8 @@ class Projectile:
         self.rect = self.sprite.get_rect(topleft = self.loc)
     def draw(self, scr):
         scr.blit(self.sprite, self.loc);
+
+class flame(Projectile):
+    def __init__(self, angle, x_direction, y_direction, loc):
+        super().__init__(angle, x_direction, y_direction, loc)
+        

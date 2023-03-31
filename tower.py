@@ -17,7 +17,7 @@ class Tower:
         self.cp = self.calcCenter()
         self.last_shot = -5;
         self.cost = cost
-    
+        self.type = "regular"
     def calcCenter(self):
         return (pygame.Surface.get_width(self.surface)//2 + self.loc[0], pygame.Surface.get_height(self.surface)//2 + self.loc[1])
         
@@ -86,4 +86,22 @@ class Tower:
         scr.blit(self.surface, self.loc)
     
         
-    
+class slow_tower(Tower):
+    def __init__(self, center_coords = [-1, -1]):
+        super().__init__(color = "Blue", cost = 100, center_coord= center_coords)
+        self.type = "slow"
+        self.slow_factor = 2
+    def shoot(self, enemies, projectiles_on_screen = []):
+        for enemy in enemies:
+            if((not enemy.slowed) and self.inRadius(enemy)):
+                enemy.speed -= self.slow_factor;
+                enemy.slowed = True
+            elif(enemy.slowed and not self.inRadius(enemy)):
+                enemy.speed += self.slow_factor;
+                enemy.slowed = False
+
+class aoe_tower(Tower):
+    def __init__(self, center_coords = [-1, -1]):
+        super().__init__(color = "Purple", cost = 100, center_coord = center_coords)
+        self.type = "aoe"
+        
