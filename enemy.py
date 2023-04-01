@@ -27,7 +27,7 @@ class Enemy:
         elif(next_point[1] < old_point[1]):
             self.direction = "Up"
         self.escaped = False
-        self.health = 1
+        self.health = 100
         
         self.cp = self.calcCenter()
         

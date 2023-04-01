@@ -51,6 +51,10 @@ class Tower:
         top = abs(self.cp[1]-centp[1])
         horizontal_coefficient = 1
         vertical_coefficient = 1
+        if(top == 0):
+            top = .00001
+        if(bot == 0):
+            bot = .00001
         if(self.cp[0] > centp[0]):
             horizontal_coefficient = -1
 
@@ -105,10 +109,18 @@ class aoe_tower(Tower):
         super().__init__(color = "Purple", cost = 100, center_coord = center_coords)
         self.type = "aoe"
     def shoot(self, enemies):
+        found_enemy = False;
+        proj = None;
         for enemy in enemies:
-            if(self.inRadius(enemy) and pygame.time.get_ticks() - self.last_shot >= self.fire_rate):
+            if((not found_enemy) and self.inRadius(enemy)):
                 angle_data = self.calcAngle(enemy)
                 proj = Projectile.flame(angle_data[0], angle_data[1],angle_data[2], self.cp)
-                return proj
+                found_enemy = True
+            if(found_enemy):
+                if(proj.hits(enemy)):
+                    enemy.health -= 1
+                    #print(enemy.health)
+        return proj
+
         
 
