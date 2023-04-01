@@ -78,6 +78,8 @@ not_started = True;
 while running:
     # resets screen
     screen.fill(0)
+
+    #print(pygame.mouse.get_pos())
     
     # for surface in path_surfaces:
     #      screen.blit(surface[0], surface[1])     
