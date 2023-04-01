@@ -89,6 +89,6 @@ class flame(Projectile):
 class sniper_bullet(Projectile):
     def __init__(self, angle, x_direction, y_direction, loc):
         super().__init__(angle, x_direction, y_direction, loc)
-        self.damage = 200;
+        self.damage = 250;
         self.shot_speed = 70
         self.sprite.fill("Gray")
