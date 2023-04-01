@@ -32,6 +32,9 @@ life_display.update()
 money_display = money.Money(1050, 25)
 money_display.money = 100
 
+#boolean for when round finishes to update money
+round_finish = False
+
 # Red Walls
 wall_surface = pygame.Surface((100,720))
 wall_surface.fill('Red')
@@ -44,6 +47,11 @@ path_surface.fill('Black')
 path_surface2 = pygame.Surface((1080,100))
 path_surface2.fill('Black')
 path_surfaces = [[path_surface, (100, 0)], [path_surface, (1080, 410)], [path_surface2, (100, 310)]]
+
+#this is updated background
+background_surface = pygame.image.load("roadmap.png")
+background_surface = pygame.transform.scale(background_surface, (1280,720))
+
 #towers
 towers = []
 # Help see waypoints
@@ -72,8 +80,7 @@ while running:
     screen.fill(0)
     
     # for surface in path_surfaces:
-    #      screen.blit(surface[0], surface[1])
-    
+    #      screen.blit(surface[0], surface[1])     
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
@@ -95,6 +102,8 @@ while running:
                 wave_in_progress = True
                 #start wave
                 current_round.next_round()
+                #sets this so that when round ends it will update money
+                round_finish = True
                 enemies_to_be_deployed = current_round.create_to_be_deployed();
                 #print(enemies_to_be_deployed)
             
@@ -128,6 +137,10 @@ while running:
     # Red Walls
     for surface in wall_surfaces:
         screen.blit(surface[0], surface[1])
+    
+    #should display road map
+    screen.blit(background_surface, (0,0))
+
     if(len(enemies_to_be_deployed) != 0 and counter % current_round.delay == 0):
         #print("got here\n")
         #print(len(enemies_to_be_deployed))
@@ -186,6 +199,11 @@ while running:
         i += 1
     if(not wave_in_progress):
         screen.blit(play_button.surface, (play_button.loc[0], play_button.loc[1]))
+        if round_finish == True:
+            #this line gives 50 dollars after a round finishes so we can change value to balance game
+            money_display.money += 50
+            money_display.update()
+            round_finish = False
     
     if shop_open:
         shop_panel.render(screen)
