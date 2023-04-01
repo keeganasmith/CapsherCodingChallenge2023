@@ -144,7 +144,7 @@ while running:
             collisions.collision_detection(enemies[i], projectiles_on_screen)
             if(enemies[i].health <= 0):
                 del enemies[i]
-                money_display.money += 5
+                money_display.money += 6
                 money_display.update();
             elif(not enemies[i].escaped):
                 screen.blit(enemies[i].surface, enemies[i].loc)

@@ -2,7 +2,7 @@ import pygame
 import Projectile
 import math
 class Tower:
-    def __init__(self, x_coord = 210, y_coord = 230, center_coord = [-1, -1], height = 70, width = 70, color = 'Orange', firerate = 900, cost = 50):
+    def __init__(self, x_coord = 210, y_coord = 230, center_coord = [-1, -1], height = 70, width = 70, color = 'Orange', firerate = 900, cost = 60):
         self.surface = pygame.Surface((height,width))
         self.surface.fill(color)
         if(center_coord != [-1, -1]):
@@ -70,7 +70,7 @@ class Tower:
         
 class slow_tower(Tower):
     def __init__(self, center_coords = [-1, -1]):
-        super().__init__(color = "Blue", cost = 100, center_coord= center_coords)
+        super().__init__(color = "Blue", cost = 120, center_coord= center_coords)
         self.type = "slow"
         self.slow_factor = 2
     def shoot(self, enemies, projectiles_on_screen = []):
@@ -87,7 +87,7 @@ class aoe_tower(Tower):
         super().__init__(color = "Purple", cost = 100, center_coord = center_coords)
         self.type = "aoe"
         self.range = 150
-        self.damage = 1;
+        self.damage = 2;
     def shoot(self, enemies):
         found_enemy = False;
         proj = None;
@@ -102,7 +102,7 @@ class aoe_tower(Tower):
         return proj
 class sniper_tower(Tower):
     def __init__(self, center_coords = [-1, -1]):
-        super().__init__(color = "Brown", cost = 100, center_coord = center_coords)
+        super().__init__(color = "Brown", cost = 110, center_coord = center_coords)
         self.type = "sniper"
         self.fire_rate = 1500
         self.range = 1280
