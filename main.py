@@ -108,11 +108,12 @@ while running:
             if (not shop_open) and shop_button.surface.get_rect(topleft = (shop_button.loc[0], shop_button.loc[1])).collidepoint(mouse[0],mouse[1]):
                 #opens shop
                 shop_open = True
-                print(shop_open)
+                
+                #print(shop_open)
             elif (shop_open) and shop_button.surface.get_rect(topleft = (shop_button.loc[0], shop_button.loc[1])).collidepoint(mouse[0],mouse[1]):
                 #closes shop
                 shop_open = False
-                print(shop_open)
+                #print(shop_open)
 
     if(not_started):
 
@@ -125,6 +126,7 @@ while running:
         screen.blit(surface[0], surface[1])
     if(len(enemies_to_be_deployed) != 0 and counter % current_round.delay == 0):
         #print("got here\n")
+        #print(len(enemies_to_be_deployed))
         enemies.append(enemies_to_be_deployed.pop())
     # Does for all enimies
     if(wave_in_progress):
@@ -144,9 +146,11 @@ while running:
                 screen.blit(enemies[i].surface, enemies[i].loc)
                 i += 1
             else:
+                print(enemies[i].health)
                 del enemies[i]
                 life_display.lives -= 1;
                 life_display.update();
+                
         if(len(enemies_to_be_deployed) == 0 and len(enemies) == 0):
             wave_in_progress = False
         i = 0
