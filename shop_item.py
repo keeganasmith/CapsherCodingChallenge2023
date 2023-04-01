@@ -23,12 +23,26 @@ class Shop_Item:
 
         self.font = pygame.font.Font('freesansbold.ttf', 16)
         self.text = self.font.render(f'Cost: {self.cost}', True, 'black')
+
+        self.description = self.font.render(f'Normal Tower', True, 'black')
+        if tower_type == "slow":
+            self.description = self.font.render(f'Slow Tower', True, 'black')
+        if tower_type == "aoe":
+            self.description = self.font.render(f'Flame Thrower', True, 'black')
+        if tower_type == "sniper":
+            self.description = self.font.render(f'Sniper Tower', True, 'black')
         
 
     def render(self, display):
         display.blit(self.surface, self.rect.topleft)
         #this line displays cost underneath tower and should auto scale by towers height
         display.blit(self.text, [self.loc[0], self.loc[1]+self.rect.height])
+
+    def show_description(self, mouse,display):
+        temp_surface = pygame.Surface(self.description.get_size())
+        temp_surface.fill(color='White')
+        temp_surface.blit(self.description, (0,0))
+        display.blit(temp_surface, [self.loc[0], self.loc[1]-20])
 
 
     def addtower(self, screen, wall_surfaces, enemies, towers):

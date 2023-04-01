@@ -15,8 +15,6 @@ class Shop:
         self.surface.fill('Gray')
         self.rect.topleft = (x_coord, y_coord)
 
-        #self.slots.append(shop_item("Images/coinIcon.png", (10, 360)))
-        #self.slots.append(shop_item("Images/manapotionIcon.png", (110, 360)))
         self.slots.append(shop_item.Shop_Item((320, 470)))
         slow_tower_loc = 320 + tower.Tower().surface.get_width() + 10;
         self.slots.append(shop_item.Shop_Item((slow_tower_loc, 470), "slow"))
@@ -24,6 +22,7 @@ class Shop:
         self.slots.append(shop_item.Shop_Item((aoe_tower_loc, 470), "aoe"))
         sniper_tower_loc = aoe_tower_loc + tower.aoe_tower().surface.get_width() + 10
         self.slots.append(shop_item.Shop_Item((sniper_tower_loc, 470), "sniper"))
+        
     def render(self, display):
         display.blit(self.surface, self.rect) 
         for slot in self.slots:
@@ -37,6 +36,14 @@ class Shop:
             if(rec.colliderect(path)):
                 return False;
         return bounds.contains(rec)
+    
+    #check if user is hovering over tower then calls towers show_description function
+    def checkhover(self,mouse, screen):
+        for i in range(len(self.slots)):
+
+            if self.slots[i].surface.get_rect(topleft = (self.slots[i].loc[0], self.slots[i].loc[1])).collidepoint(mouse[0],mouse[1]):
+                self.slots[i].show_description(mouse, screen)
+
 
     #this function is supposed to check if any tower in shop is clicked and then calls the add tower function for that class if it is
     def checkaction(self, mouse, towers, screen, wall_surfaces, enemies, path_surfaces, cash):
