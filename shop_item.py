@@ -6,13 +6,14 @@ class Shop_Item:
     def __init__(self, pos, tower_type = "norm"):
         #size of tower in shop
         self.tower = tower.Tower()
-        self.cost = 50
+        
         if(tower_type == "slow"):
             self.tower = tower.slow_tower()
-            self.cost = 100
         if(tower_type == "aoe"):
-            self.tower = tower.aoe_tower()
-            self.cost = 100
+            self.tower = tower.aoe_tower() 
+        if(tower_type == "sniper"):
+            self.tower = tower.sniper_tower()
+        self.cost = self.tower.getCost()
         #if(tower_type == "blah"):
         #   self.tower = tower.blah()
         self.surface = self.tower.surface
@@ -48,7 +49,6 @@ class Shop_Item:
                     selected = True
                 
                 if selected:
-                    #print(mouse)
                     return mouse
             
             for surface in wall_surfaces: #draw map

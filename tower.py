@@ -25,18 +25,18 @@ class Tower:
         return pygame.math.Vector2(self.cp).distance_to(enemy.get_Center()) <= self.range
     
     def getCost(self):
-        print("Cost:", self.cost)
         return self.cost
 
 
     def shoot(self, enimies, projectiles_on_screen = []):
+        if(pygame.time.get_ticks() - self.last_shot < self.fire_rate):
+            return;
         for enemy in enimies:
             if(self.inRadius(enemy) and pygame.time.get_ticks() - self.last_shot >= self.fire_rate):
-                #print("Adding shot")
                 angle_data = self.calcAngle(enemy);
                 projectiles_on_screen.append(Projectile.Projectile(angle_data[0], angle_data[1], angle_data[2], self.cp))
-                #self.shots.append(Projectile.Projectile(self.calcAngle(enemy), self.cp))
                 self.last_shot = pygame.time.get_ticks()
+                return;
                 
     def updateShots(self, scr, enimies):
         self.shoot(enimies)
@@ -60,30 +60,8 @@ class Tower:
 
         if(self.cp[1] > centp[1]):
             vertical_coefficient = -1
-        # print("top: ", top)
-        # print("bot: ", bot) 
-        # If path is horizontal
-        # print("top: ", top)
-        # print("bot: ", bot)
-        # if top == 0:
-        #     # To the right
-        #     if self.cp[0] < centp[0]:
-        #         degrs = math.radians(0)
-        #     #To the left
-        #     else:
-        #         degrs = math.radians(180)
-        # Else
         
-        # elif bot == 0:
-        #     if self.cp[1] < centp[1]:
-        #         degrs = math.radians(90)
-        #     #To the left
-        #     else:
-        #         degrs = math.radians(-90)
-                
-        # else:
         degrs = math.atan(top/bot)
-        #print("Degrees: ", degrs)
         return [degrs, horizontal_coefficient, vertical_coefficient]
     
     def draw(self, scr):
@@ -119,8 +97,26 @@ class aoe_tower(Tower):
             if(found_enemy):
                 if(proj.hits(enemy)):
                     enemy.health -= 1
-                    #print(enemy.health)
         return proj
+class sniper_tower(Tower):
+    def __init__(self, center_coords = [-1, -1]):
+        super().__init__(color = "Brown", cost = 100, center_coord = center_coords)
+        self.type = "sniper"
+        self.fire_rate = 1500
+        self.range = 1280
+    def shoot(self, enemies, projectiles_on_screen= []):
+        if(pygame.time.get_ticks() - self.last_shot < self.fire_rate):
+            return;
+        if(len(enemies) == 0):
+            return;
+        max_health = enemies[0].health
+        best_target = enemies[0];
+        for enemy in enemies:
+            if(enemy.health > max_health):
+                best_target = enemy
+                max_health = enemy.health
+        angle_data = self.calcAngle(best_target)
+        projectiles_on_screen.append(Projectile.sniper_bullet(angle_data[0], angle_data[1], angle_data[2], self.cp))
+        self.last_shot = pygame.time.get_ticks()
 
-        
 

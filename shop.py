@@ -18,8 +18,12 @@ class Shop:
         #self.slots.append(shop_item("Images/coinIcon.png", (10, 360)))
         #self.slots.append(shop_item("Images/manapotionIcon.png", (110, 360)))
         self.slots.append(shop_item.Shop_Item((320, 470)))
-        self.slots.append(shop_item.Shop_Item((320 + tower.Tower().surface.get_width() + 10, 470), "slow"))
-        self.slots.append(shop_item.Shop_Item((320 + tower.Tower().surface.get_width() + 10 + tower.slow_tower().surface.get_width() + 10, 470), "aoe"))
+        slow_tower_loc = 320 + tower.Tower().surface.get_width() + 10;
+        self.slots.append(shop_item.Shop_Item((slow_tower_loc, 470), "slow"))
+        aoe_tower_loc = slow_tower_loc + tower.slow_tower().surface.get_width() + 10
+        self.slots.append(shop_item.Shop_Item((aoe_tower_loc, 470), "aoe"))
+        sniper_tower_loc = aoe_tower_loc + tower.aoe_tower().surface.get_width() + 10
+        self.slots.append(shop_item.Shop_Item((sniper_tower_loc, 470), "sniper"))
     def render(self, display):
         display.blit(self.surface, self.rect) 
         for slot in self.slots:
@@ -65,6 +69,11 @@ class Shop:
                 if i ==2:
                     if self.checkPlacement(screen, path_surfaces, coords, rec.width, rec.height):
                         tow = tower.aoe_tower(center_coords= coords)
+                        towers.append(tow)
+                        cash.money -= tow.getCost()
+                if i==3:
+                    if self.checkPlacement(screen, path_surfaces, coords, rec.width, rec.height):
+                        tow = tower.sniper_tower(center_coords = coords)
                         towers.append(tow)
                         cash.money -= tow.getCost()
                 return "notexit"

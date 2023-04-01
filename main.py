@@ -146,7 +146,6 @@ while running:
                 screen.blit(enemies[i].surface, enemies[i].loc)
                 i += 1
             else:
-                print(enemies[i].health)
                 del enemies[i]
                 life_display.lives -= 1;
                 life_display.update();
