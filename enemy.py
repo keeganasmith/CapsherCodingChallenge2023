@@ -104,7 +104,7 @@ class Enemy:
 class Fast_enemy(Enemy):
     def __init__(self):
         super().__init__()
-        self.speed = 7
+        self.speed = 8
         self.surface = pygame.Surface((50,50))
         self.surface.fill('White')
 class Tank_enemy(Enemy):
@@ -113,4 +113,4 @@ class Tank_enemy(Enemy):
         self.speed = 2
         self.surface = pygame.Surface((50, 50))
         self.surface.fill('Purple')
-        self.health = 250
+        self.health = 500

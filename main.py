@@ -152,6 +152,7 @@ while running:
                 
         if(len(enemies_to_be_deployed) == 0 and len(enemies) == 0):
             wave_in_progress = False
+            projectiles_on_screen = []
         i = 0
         while(i < len(towers)):
             if(towers[i].type == "aoe"):

@@ -10,7 +10,7 @@ class Tower:
             y_coord = center_coord[1] - (width //2)
 
         self.loc = (x_coord, y_coord)
-        self.range = 150
+        self.range = 200
         self.shots = []
         self.fire_rate = firerate #higher means slower!!!
         
@@ -76,16 +76,18 @@ class slow_tower(Tower):
     def shoot(self, enemies, projectiles_on_screen = []):
         for enemy in enemies:
             if((not enemy.slowed) and self.inRadius(enemy)):
-                enemy.speed -= self.slow_factor;
+                enemy.speed /= self.slow_factor;
                 enemy.slowed = True
             elif(enemy.slowed and not self.inRadius(enemy)):
-                enemy.speed += self.slow_factor;
+                enemy.speed *= self.slow_factor;
                 enemy.slowed = False
 
 class aoe_tower(Tower):
     def __init__(self, center_coords = [-1, -1]):
         super().__init__(color = "Purple", cost = 100, center_coord = center_coords)
         self.type = "aoe"
+        self.range = 150
+        self.damage = 1;
     def shoot(self, enemies):
         found_enemy = False;
         proj = None;
@@ -96,7 +98,7 @@ class aoe_tower(Tower):
                 found_enemy = True
             if(found_enemy):
                 if(proj.hits(enemy)):
-                    enemy.health -= 1
+                    enemy.health -= self.damage
         return proj
 class sniper_tower(Tower):
     def __init__(self, center_coords = [-1, -1]):
