@@ -115,6 +115,10 @@ while running:
                 shop_open = False
                 #print(shop_open)
 
+        #end mouse down if statement
+    #end event if statement
+        
+
     if(not_started):
 
         screen.blit(start_display.surface, (0, 0))
@@ -185,6 +189,8 @@ while running:
     
     if shop_open:
         shop_panel.render(screen)
+        mouse_ps = pygame.mouse.get_pos()
+        shop_panel.checkhover(mouse_ps, screen)
 
     if tower_selected:
         radius.tower_is_selected(screen, selected_tower)
