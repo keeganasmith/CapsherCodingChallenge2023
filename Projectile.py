@@ -85,3 +85,10 @@ class flame(Projectile):
         enemy_center = enemy.calcCenter();
         dist = ((enemy_center[0] - self.center[0])**2 + (enemy_center[1] - self.center[1])**2) ** .5
         return dist
+
+class sniper_bullet(Projectile):
+    def __init__(self, angle, x_direction, y_direction, loc):
+        super().__init__(angle, x_direction, y_direction, loc)
+        self.damage = 200;
+        self.shot_speed = 70
+        self.sprite.fill("Gray")

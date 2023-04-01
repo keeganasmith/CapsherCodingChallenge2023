@@ -113,4 +113,4 @@ class Tank_enemy(Enemy):
         self.speed = 2
         self.surface = pygame.Surface((50, 50))
         self.surface.fill('Purple')
-        self.health = 5
+        self.health = 250
