@@ -6,7 +6,7 @@ class Enemy:
         # How fast enemy goes
         self.speed = 5
         # Waypoints enemy follows
-        self.path = [[125, 0], [125, 335], [1105, 335], [1105, 680]]    
+        self.path = [[65, 0], [65, 500], [310, 500], [310, 150], [770, 150], [770, 430], [1280, 430]]    
         # Current index in path enemy is heading to
         self.spot = 1
         # Starting point

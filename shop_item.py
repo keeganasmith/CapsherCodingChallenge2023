@@ -1,5 +1,7 @@
 import pygame
 import tower
+background_surface = pygame.image.load("roadmap.png")
+background_surface = pygame.transform.scale(background_surface, (1280,720))
 
 #this represents an indivual tower that could be in the shop so we would have a different class for each shop_tower
 class Shop_Item:
@@ -24,13 +26,13 @@ class Shop_Item:
         self.font = pygame.font.Font('freesansbold.ttf', 16)
         self.text = self.font.render(f'Cost: {self.cost}', True, 'black')
 
-        self.description = self.font.render(f'Normal Tower', True, 'black')
+        self.description = self.font.render(f'Normal Tower: Shoots projectiles at first enemy to come in range', True, 'black')
         if tower_type == "slow":
-            self.description = self.font.render(f'Slow Tower', True, 'black')
+            self.description = self.font.render(f'Slow Tower: Slows all enemies within range. Slow affect cannot be stacked', True, 'black')
         if tower_type == "aoe":
-            self.description = self.font.render(f'Flame Thrower', True, 'black')
+            self.description = self.font.render(f'Flame Thrower: Shoots a cone of flame at first enemy to come in range', True, 'black')
         if tower_type == "sniper":
-            self.description = self.font.render(f'Sniper Tower', True, 'black')
+            self.description = self.font.render(f'Sniper Tower: Shoots a projectile at the strongest enemy on the screen', True, 'black')
         
 
     def render(self, display):
@@ -65,8 +67,9 @@ class Shop_Item:
                 if selected:
                     return mouse
             
-            for surface in wall_surfaces: #draw map
-                screen.blit(surface[0], surface[1])
+             #draw map
+            screen.blit(background_surface, (0,0))
+
             i = 0
             while(i < len(towers)):
                 screen.blit(towers[i].surface, towers[i].loc)
@@ -88,7 +91,7 @@ class Shop_Item:
             screen.blit(IMAGE, (pygame.mouse.get_pos()[0] - IMAGE.get_width()//2, pygame.mouse.get_pos()[1] - IMAGE.get_height()//2))
             font = pygame.font.Font('freesansbold.ttf', 32);
             text = font.render('Press any key to cancel', True, 'black')
-            screen.blit(text, (600, 200))
+            screen.blit(text, (500, 0))
             pygame.display.flip()
 
 

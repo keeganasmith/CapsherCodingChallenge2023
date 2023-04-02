@@ -46,7 +46,7 @@ path_surface = pygame.Surface((100,310))
 path_surface.fill('Black')
 path_surface2 = pygame.Surface((1080,100))
 path_surface2.fill('Black')
-path_surfaces = [[path_surface, (100, 0)], [path_surface, (1080, 410)], [path_surface2, (100, 310)]]
+path_surfaces = []#[[path_surface, (100, 0)], [path_surface, (1080, 410)], [path_surface2, (100, 310)]]
 
 #this is updated background
 background_surface = pygame.image.load("roadmap.png")
@@ -75,6 +75,8 @@ selected_tower = tower.Tower()
 counter = 0;
 
 not_started = True;
+
+num_snipers = [0]
 while running:
     # resets screen
     screen.fill(0)
@@ -111,7 +113,7 @@ while running:
             
             #this checks to see if player clicked on any towers in shop
             if shop_open:
-                result = shop_panel.checkaction(mouse, towers, screen, wall_surfaces, enemies, path_surfaces, money_display) 
+                result = shop_panel.checkaction(mouse, towers, screen, wall_surfaces, enemies, path_surfaces, money_display, num_snipers) 
                 money_display.update();
                 if(result == "exit"):
                     running = False
@@ -182,6 +184,10 @@ while running:
                 screen.blit(proj.sprite, proj.loc)
                 i += 1
                 continue
+            if(towers[i].type == "sniper"):
+                towers[i].shoot(enemies, projectiles_on_screen, game_counter = counter);
+                i += 1
+                continue
             towers[i].shoot(enemies, projectiles_on_screen)
             i += 1
         i = 0
@@ -203,7 +209,7 @@ while running:
         screen.blit(play_button.surface, (play_button.loc[0], play_button.loc[1]))
         if round_finish == True:
             #this line gives 50 dollars after a round finishes so we can change value to balance game
-            money_display.money += 50
+            money_display.money += 0
             money_display.update()
             round_finish = False
     

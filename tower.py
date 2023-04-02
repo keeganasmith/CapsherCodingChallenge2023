@@ -2,7 +2,7 @@ import pygame
 import Projectile
 import math
 class Tower:
-    def __init__(self, x_coord = 210, y_coord = 230, center_coord = [-1, -1], height = 70, width = 70, color = 'Orange', firerate = 900, cost = 60):
+    def __init__(self, x_coord = 210, y_coord = 230, center_coord = [-1, -1], height = 70, width = 70, color = 'Orange', firerate = 900, cost = 75):
         self.surface = pygame.Surface((height,width))
         self.surface.fill(color)
         if(center_coord != [-1, -1]):
@@ -101,12 +101,13 @@ class aoe_tower(Tower):
                     enemy.health -= self.damage
         return proj
 class sniper_tower(Tower):
-    def __init__(self, center_coords = [-1, -1]):
+    def __init__(self, center_coords = [-1, -1], sniper_number = 0):
         super().__init__(color = "Brown", cost = 110, center_coord = center_coords)
         self.type = "sniper"
-        self.fire_rate = 1500
+        self.fire_rate = 1700
         self.range = 1280
-    def shoot(self, enemies, projectiles_on_screen= []):
+        self.sniper_number = sniper_number;
+    def shoot(self, enemies, projectiles_on_screen= [], game_counter =0):
         if(pygame.time.get_ticks() - self.last_shot < self.fire_rate):
             return;
         if(len(enemies) == 0):
