@@ -22,6 +22,8 @@ running = True
 start_display = start_screen.start_screen()
 enemies = []
 enemies_to_be_deployed = []
+
+victory_display = pygame.image.load("victory.png")
 #round setup
 current_round = round.Round()
 #life display:
@@ -80,6 +82,7 @@ counter = 0;
 
 not_started = True;
 
+victory = False
 num_snipers = [0]
 while running:
     # resets screen
@@ -99,6 +102,12 @@ while running:
             if(not_started):
                 if(start_display.start_button.get_rect(topleft = start_display.start_button_loc).collidepoint(mouse)):
                     not_started = False
+                continue
+            if(victory):
+                if(mouse[0] <= 200 and mouse[0] >= 20 and mouse[1] >= 610 and mouse[1] <= 670):
+                    victory = False
+                    not_started = True
+                continue
             if(tower_selected):
                 if(sell_panel.surface.get_rect(topleft = sell_panel.loc).collidepoint(mouse)):
                     towers.remove(selected_tower)
@@ -140,8 +149,25 @@ while running:
 
         #end mouse down if statement
     #end event if statement
-        
-
+    #display victory screen/reset stuff
+    
+    if(victory):
+        screen.blit(victory_display, (0,0))
+        continue;
+    if((not wave_in_progress) and current_round.current_round == len(current_round.rounds)):
+        print("got here\n")
+        screen.blit(victory_display, (0, 0))
+        towers = []
+        money_display.money = 100
+        money_display.update()
+        current_round = round.Round()
+        victory = True
+        shop_open = False
+        life_display.lives = 50
+        life_display.update()
+        pygame.display.flip()
+        clock.tick(60)
+        continue
     if(not_started):
 
         screen.blit(start_display.surface, (0, 0))
