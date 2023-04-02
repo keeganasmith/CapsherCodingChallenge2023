@@ -10,6 +10,7 @@ import shopbutton
 import shop
 import radius
 import start_screen
+import sell_tower
 # pygame setup
 pygame.init()
 WIDTH = 1280
@@ -32,6 +33,9 @@ life_display.update()
 money_display = money.Money(1050, 25)
 money_display.money = 100
 
+#sell button
+sell_panel = sell_tower.sell_panel()
+sell_panel.loc = [1050, 150]
 #boolean for when round finishes to update money
 round_finish = False
 
@@ -49,7 +53,7 @@ path_surface2.fill('Black')
 path_surfaces = []#[[path_surface, (100, 0)], [path_surface, (1080, 410)], [path_surface2, (100, 310)]]
 
 #this is updated background
-background_surface = pygame.image.load("roadmap.png")
+background_surface = pygame.image.load("roadmap-new.png")
 background_surface = pygame.transform.scale(background_surface, (1280,720))
 
 #towers
@@ -91,11 +95,17 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            tower_selected = False
             mouse = pygame.mouse.get_pos()
             if(not_started):
                 if(start_display.start_button.get_rect(topleft = start_display.start_button_loc).collidepoint(mouse)):
                     not_started = False
+            if(tower_selected):
+                if(sell_panel.surface.get_rect(topleft = sell_panel.loc).collidepoint(mouse)):
+                    towers.remove(selected_tower)
+                    money_display.money += selected_tower.getCost()//2
+                    money_display.update()
+                    tower_selected = False
+            tower_selected = False
             for tow in towers: #checks if a tower has been selected and displays the towers radius
                 #print("got here")
                 if(tow.surface.get_rect(topleft = tow.loc).collidepoint(mouse)):
@@ -220,7 +230,7 @@ while running:
 
     if tower_selected:
         radius.tower_is_selected(screen, selected_tower)
-
+        sell_panel.draw_sell_panel(screen, selected_tower)
     # flip() the display to put your work on screen
     pygame.display.flip()
     counter += 1
