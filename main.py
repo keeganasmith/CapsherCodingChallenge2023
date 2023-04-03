@@ -207,8 +207,6 @@ while running:
         clock.tick(60)
         continue;
     # Red Walls
-    for surface in wall_surfaces:
-        screen.blit(surface[0], surface[1])
     
     #should display road map
     screen.blit(background_surface, (0,0))
