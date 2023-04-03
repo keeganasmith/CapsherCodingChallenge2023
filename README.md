@@ -27,9 +27,27 @@ The victory screen is pretty much the same as the defeat screen. Again it just k
 
 
 ### Enemy
+The enemy class keeps track of enemy pathing, health points, status affects, and speed. There are also child classes of Enemy such as Fast Enemy, Tank Enemy, Super Fast Enemy, and Super Tank Enemy which simply adjust the speed and health points attributes of the enemy class.
+#### Enemy Pathing
 
 ---------------------
-
+Enemy pathing is kept track of by simply having a list of points which represent each place where the enemy has to turn a corner. The enemy starts at the initial point and then heads either up, down, left, or right depending on the location of the next way point. This would make it easy if we wanted to add a new map as updating the enemy pathing is just a matter of changing the set of waypoints
+#### Enemy Status Affects
+As of now there is only one status affect in the game which is slow. To ensure that only one slow is applied at a time, we also include the id of the tower that applied the slow to the enemy. This way we can check if the current slow tower's id matches the tower that slowed the enemy to begin with, and can update the slow affect as needed.
+#### Enemy Health
+Each enemy stores it's current health. When this value reaches 0 the enemy has been felled.
+#### Enemy Speed 
+The enemy speed represents the number of pixels the enemy travels in each frame. The higher this number, the faster an enemy travels. 
+#### Default Enemy
+This enemy is colored blue and has 100 health and 5 speed. This means that it dies in two shots from the normal tower.
+#### Tank Enemy
+This enemy is colored purple and has 500 health and 2 speed. This means it is very slow and dies in two shots from a sniper tower.
+#### Fast Enemy
+This enemy is colored white and has 100 health and 8 speed. This means that it travels more than 50% faster than the regular enemy and also dies in two hits from a normal tower
+#### Super Tank Enemy
+This enemy is colored black and has 750 health and 4 speed. This means that it travels at nearly the same speed as a regular enemy, but has 7.5x the health makin this a formidable foe.
+#### Super Fast Enemy
+This enemy is colored gray and has 150 health and 12 speed. This means that it has 50% more health than the regular enemy and more than double the speed, making this possibly the toughest enemy in the game.
 ### Shop
 The Shop functionality of the game is implemented with 3 classes being shop_button, Shop, and Shop_Item. These 3 classes work together to smoothly allow the player to buy towers in the shop and place them on the map.
 #### shop_button
