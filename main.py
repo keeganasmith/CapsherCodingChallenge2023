@@ -38,7 +38,7 @@ money_display = money.Money(1050, 25)
 money_display.money = 100
 
 #round display:
-round_dis = round_display.round_display(1050, 110)
+round_dis = round_display.round_display(1050, 125)
 round_dis.rounds = 1
 round_dis.update()
 
