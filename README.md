@@ -23,8 +23,12 @@ The defeat screen only keeps track of the "again" button. Upon being clicked the
 #### Victory Screen
 The victory screen is pretty much the same as the defeat screen. Again it just keeps track of the "again" button which upon being pressed redirects the player back to the start screen.
 
+---------------------
+
 
 ### Enemy
+
+---------------------
 
 ### Shop
 The Shop functionality of the game is implemented with 3 classes being shop_button, Shop, and Shop_Item. These 3 classes work together to smoothly allow the player to buy towers in the shop and place them on the map.
@@ -42,6 +46,8 @@ The Towers are your only line of defense against the enemies. They shoot, slow o
 
 The slow tower doesn't shoot projectiles however, as it slows down all enemies within its radius. The flame tower also doesn't not "shoot" projectiles, but it still attack by burning all enemies within close proximity with its flamethrower. Each tower has its own seperate cost, radius, damage, and shot speed for projectiles. 
 
+---------------------
+
 ### Projectile
 The projectiles are also their own class, following in a straight line when shoot in whichever angle chose for it until it either hits an enemy or reached the boujndary of the game.
 
@@ -50,6 +56,9 @@ The projectiles are updates every frame by their shot speed by the tower class
 The normal tower bullet and sniper bullet have their own classes but do similar things with differing and damage
 
 While the flame from the flame doesn't actually travel it is considered a projectile so the flame wouldn't need to be implemented within the flame tower class
+
+---------------------
+
 ### Art
 All of the artwork in our game is made of pixel art using an online pixel art editor.
 
