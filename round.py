@@ -7,8 +7,8 @@ class Round:
         [{"Norm":8, "Fast":2}, 50], [{"Norm": 8, "Fast":2}, 20], 
         [{"Tank":5}, 40], [{"Norm": 6, "Tank": 3, "Fast": 3}, 40], 
         [{"Norm": 4, "Tank": 3, "Fast": 5}, 30], [{"Norm": 4, "Tank": 5, "Fast": 7}, 30], [{"Fast": 15}, 30], [{"Norm": 5, "Tank": 8, "Fast": 9}, 20],
-        [{"Norm": 5, "Tank": 7, "Fast": 12}, 10], [{"Norm": 5, "Tank": 3, "Fast": 20}, 10], [{"Norm": 3, "Tank": 12, "Fast":10}, 10],
-        [{"Norm": 1, "Tank": 15, "Fast":20}, 10]
+        [{"Norm": 5, "Tank": 7, "Fast": 12}, 10], [{"Norm": 5, "Tank": 3, "Fast": 18, "super_fast":2}, 10], [{"Norm": 3, "Tank": 10, "Fast":8, "super_tank": 2, "super_fast": 2}, 10],
+        [{"Norm": 1, "Tank": 15, "Fast":20, "super_tank": 4, "super_fast":4}, 10]
         ]  #add as many rounds as possible. Dictionary is the type: quantity, second number is delay
 
         self.num_enemies = 2
