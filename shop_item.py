@@ -47,7 +47,7 @@ class Shop_Item:
         display.blit(temp_surface, [self.loc[0], self.loc[1]-20])
 
 
-    def addtower(self, screen, wall_surfaces, enemies, towers):
+    def addtower(self, screen, enemies, towers):
 
         #here we need to wait for user to click so we know coordinates to pass back through of where to place tower
         
