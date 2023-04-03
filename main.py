@@ -179,6 +179,9 @@ while running:
         enemies_to_be_deployed = []
         enemies = []
         projectiles_on_screen = []
+        round_finish = False
+        wave_in_progress = False
+        continue
     if(victory):
         screen.blit(victory_display, (0,0))
         pygame.display.flip()
@@ -197,6 +200,7 @@ while running:
         life_display.update()
         round_dis.rounds = 1
         round_dis.update()
+        round_finish = False
         pygame.display.flip()
         clock.tick(60)
         continue
