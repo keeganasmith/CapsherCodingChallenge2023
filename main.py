@@ -179,6 +179,8 @@ while running:
         shop_open = False
         life_display.lives = 50
         life_display.update()
+        round_dis.rounds = 1
+        round_dis.update()
     if(victory):
         screen.blit(victory_display, (0,0))
         pygame.display.flip()
@@ -195,6 +197,8 @@ while running:
         shop_open = False
         life_display.lives = 50
         life_display.update()
+        round_dis.rounds = 1
+        round_dis.update()
         pygame.display.flip()
         clock.tick(60)
         continue
