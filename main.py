@@ -48,18 +48,14 @@ sell_panel.loc = [1050, 150]
 #boolean for when round finishes to update money
 round_finish = False
 
-# Red Walls
-wall_surface = pygame.Surface((100,720))
-wall_surface.fill('Red')
-wall_surface2 = pygame.Surface((980,310))
-wall_surface2.fill('Red')
-wall_surfaces = [[wall_surface, [0, 0]], [wall_surface2, [200, 0]], [wall_surface, [1180, 0]], [wall_surface2, [100, 410]]]
-
-path_surface = pygame.Surface((100,310))
-path_surface.fill('Black')
-path_surface2 = pygame.Surface((1080,100))
-path_surface2.fill('Black')
-path_surfaces = []#[[path_surface, (100, 0)], [path_surface, (1080, 410)], [path_surface2, (100, 310)]]
+# Path of enemies
+path_surface = pygame.Surface((82,558))
+path_surface2 = pygame.Surface((240,80))
+path_surface3 = pygame.Surface((80,352))
+path_surface4 = pygame.Surface((450,80))
+path_surface5 = pygame.Surface((80,272))
+path_surface6 = pygame.Surface((428,80))
+path_surfaces = [[path_surface, (80, 0)], [path_surface2, (162, 478)], [path_surface3, (322, 126)], [path_surface4, (402, 126)], [path_surface5, (772, 206)], [path_surface6, (852, 398)]]
 
 #this is updated background
 background_surface = pygame.image.load("assets/roadmap-new.png")
@@ -98,8 +94,6 @@ while running:
 
     #print(pygame.mouse.get_pos())
     
-    # for surface in path_surfaces:
-    #      screen.blit(surface[0], surface[1])     
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
@@ -217,6 +211,9 @@ while running:
     
     #should display road map
     screen.blit(background_surface, (0,0))
+    
+    # for surface in path_surfaces:
+    #     screen.blit(surface[0], surface[1])     
 
     if(len(enemies_to_be_deployed) != 0 and counter % current_round.delay == 0):
         #print("got here\n")
