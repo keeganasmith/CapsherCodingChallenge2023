@@ -31,6 +31,7 @@ The enemy class keeps track of enemy pathing, health points, status affects, and
 #### Enemy Pathing
 
 ---------------------
+
 Enemy pathing is kept track of by simply having a list of points which represent each place where the enemy has to turn a corner. The enemy starts at the initial point and then heads either up, down, left, or right depending on the location of the next way point. This would make it easy if we wanted to add a new map as updating the enemy pathing is just a matter of changing the set of waypoints
 #### Enemy Status Affects
 As of now there is only one status affect in the game which is slow. To ensure that only one slow is applied at a time, we also include the id of the tower that applied the slow to the enemy. This way we can check if the current slow tower's id matches the tower that slowed the enemy to begin with, and can update the slow affect as needed.
@@ -48,6 +49,10 @@ This enemy is colored white and has 100 health and 8 speed. This means that it t
 This enemy is colored black and has 750 health and 4 speed. This means that it travels at nearly the same speed as a regular enemy, but has 7.5x the health makin this a formidable foe.
 #### Super Fast Enemy
 This enemy is colored gray and has 150 health and 12 speed. This means that it has 50% more health than the regular enemy and more than double the speed, making this possibly the toughest enemy in the game.
+
+---------------------
+
+
 ### Shop
 The Shop functionality of the game is implemented with 3 classes being shop_button, Shop, and Shop_Item. These 3 classes work together to smoothly allow the player to buy towers in the shop and place them on the map.
 #### shop_button
