@@ -1,7 +1,7 @@
 import pygame
 class sell_panel:
     def __init__(self, loc = [1000, 150]):
-        self.surface = pygame.image.load("sell_button.png")
+        self.surface = pygame.image.load("assets/sell_button.png")
         self.loc= loc
     def draw_sell_panel(self, screen, tower):
         self.font = pygame.font.Font('freesansbold.ttf', 16)
