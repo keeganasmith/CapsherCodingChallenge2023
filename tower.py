@@ -86,10 +86,10 @@ class slow_tower(Tower):
 
 class aoe_tower(Tower):
     def __init__(self, center_coords = [-1, -1]):
-        super().__init__(color = "Purple", cost = 100, center_coord = center_coords)
+        super().__init__(color = "Purple", cost = 135, center_coord = center_coords)
         self.type = "aoe"
         self.range = 150
-        self.damage = 2;
+        self.damage = 1.7;
     def shoot(self, enemies):
         found_enemy = False;
         proj = None;

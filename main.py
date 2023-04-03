@@ -140,7 +140,7 @@ while running:
             
             #this checks to see if player clicked on any towers in shop
             if shop_open:
-                result = shop_panel.checkaction(mouse, towers, screen, wall_surfaces, enemies, path_surfaces, money_display, num_snipers, slow_tower_id) 
+                result = shop_panel.checkaction(mouse, towers, screen, enemies, path_surfaces, money_display, num_snipers, slow_tower_id = slow_tower_id) 
                 money_display.update();
                 if(result == "exit"):
                     running = False
@@ -230,7 +230,7 @@ while running:
             collisions.collision_detection(enemies[i], projectiles_on_screen)
             if(enemies[i].health <= 0):
                 del enemies[i]
-                money_display.money += 5
+                money_display.money += 4
                 money_display.update();
             elif(not enemies[i].escaped):
                 screen.blit(enemies[i].surface, enemies[i].loc)
