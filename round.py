@@ -8,7 +8,7 @@ class Round:
         [{"Tank":5}, 40], [{"Norm": 6, "Tank": 3, "Fast": 3}, 40], 
         [{"Norm": 4, "Tank": 3, "Fast": 5}, 30], [{"Norm": 4, "Tank": 5, "Fast": 7}, 30], [{"Fast": 15}, 30], [{"Norm": 5, "Tank": 8, "Fast": 9}, 20],
         [{"Norm": 5, "Tank": 7, "Fast": 12}, 10], [{"Norm": 5, "Tank": 3, "Fast": 20}, 10], [{"Norm": 3, "Tank": 12, "Fast":10}, 10],
-        [{"Norm": 1, "Tank": 15, "Fast":20}]
+        [{"Norm": 1, "Tank": 15, "Fast":20}, 10]
         ]  #add as many rounds as possible. Dictionary is the type: quantity, second number is delay
 
         self.num_enemies = 2
@@ -27,6 +27,10 @@ class Round:
                 self.to_be_deployed.append(enemy.Enemy())
             if(type_list[rand] == 'Tank'):
                 self.to_be_deployed.append(enemy.Tank_enemy())
+            if(type_list[rand] == 'super_fast'):
+                self.to_be_deployed.append(enemy.super_fast())
+            if(type_list[rand] == "super_tank"):
+                self.to_be_deployed.append(enemy.super_tank())
             self.rounds[self.current_round][0][type_list[rand]] -= 1
             if(self.rounds[self.current_round][0][type_list[rand]] == 0):
                 self.rounds[self.current_round][0].pop(type_list[rand])
