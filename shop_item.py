@@ -1,6 +1,6 @@
 import pygame
 import tower
-background_surface = pygame.image.load("roadmap-new.png")
+background_surface = pygame.image.load("assets/roadmap-new.png")
 background_surface = pygame.transform.scale(background_surface, (1280,720))
 
 #this represents an indivual tower that could be in the shop so we would have a different class for each shop_tower

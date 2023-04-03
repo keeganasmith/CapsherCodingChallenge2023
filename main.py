@@ -24,8 +24,8 @@ start_display = start_screen.start_screen()
 enemies = []
 enemies_to_be_deployed = []
 
-victory_display = pygame.image.load("victory.png")
-lost_display = pygame.image.load("lose.png")
+victory_display = pygame.image.load("assets/victory.png")
+lost_display = pygame.image.load("assets/lose.png")
 #round setup
 current_round = round.Round()
 #life display:
@@ -62,7 +62,7 @@ path_surface2.fill('Black')
 path_surfaces = []#[[path_surface, (100, 0)], [path_surface, (1080, 410)], [path_surface2, (100, 310)]]
 
 #this is updated background
-background_surface = pygame.image.load("roadmap-new.png")
+background_surface = pygame.image.load("assets/roadmap-new.png")
 background_surface = pygame.transform.scale(background_surface, (1280,720))
 
 #towers
