@@ -36,7 +36,16 @@ The main purpose of the shop class is to hold the different Shop_Items which are
 Shop_Item holds the information about each tower that is in the shop mainly the type of tower as well as the description and price. The main function in Shop_Item is the addtower() function which allows the user to click somewhere on the map and then returns the location of the click so that the appropriate tower can be placed in that location.
 
 ### Tower
+The Towers are your only line of defense against the enemies. They shoot, slow or burn the enemies to prevent them from escaping. They can be placed anywhere besides on another tower, out of bounds, or on the path the enemies walk. The normal and sniper tower both shoot projectiles, which aim at the furthest enemy down the path that has its centerpoint within the radius of the tower. The angle is calculated by using the centerpoint of the enemy and the tower as the two points on a right triangle
+
+The slow tower doesn't shoot projectiles however, as it slows down all enemies within its radius. The flame tower also doesn't not "shoot" projectiles, but it still attack by burning all enemies within close proximity with its flamethrower. Each tower has its own seperate cost, radius, damage, and shot speed for projectiles. 
 
 ### Projectile
+The projectiles are also their own class, following in a straight line when shoot in whichever angle chose for it until it either hits an enemy or reached the boujndary of the game.
 
+The projectiles are updates every frame by their shot speed by the tower class
+
+The normal tower bullet and sniper bullet have their own classes but do similar things with differing and damage
+
+While the flame from the flame doesn't actually travel it is considered a projectile so the flame wouldn't need to be implemented within the flame tower class
 ### Art
