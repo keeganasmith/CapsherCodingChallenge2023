@@ -29,7 +29,7 @@ lost_display = pygame.image.load("lose.png")
 current_round = round.Round()
 #life display:
 life_display = lives.Lives(1050, 75)
-life_display.lives = 30
+life_display.lives = 20
 life_display.update()
 
 #money display:
