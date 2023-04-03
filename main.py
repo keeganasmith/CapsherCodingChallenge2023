@@ -177,10 +177,13 @@ while running:
         current_round = round.Round()
         lost = True
         shop_open = False
-        life_display.lives = 50
+        life_display.lives = 20
         life_display.update()
         round_dis.rounds = 1
         round_dis.update()
+        enemies_to_be_deployed = []
+        enemies = []
+        projectiles_on_screen = []
     if(victory):
         screen.blit(victory_display, (0,0))
         pygame.display.flip()
@@ -195,7 +198,7 @@ while running:
         current_round = round.Round()
         victory = True
         shop_open = False
-        life_display.lives = 50
+        life_display.lives = 20
         life_display.update()
         round_dis.rounds = 1
         round_dis.update()
