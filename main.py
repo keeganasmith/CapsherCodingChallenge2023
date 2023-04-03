@@ -232,7 +232,7 @@ while running:
             collisions.collision_detection(enemies[i], projectiles_on_screen)
             if(enemies[i].health <= 0):
                 del enemies[i]
-                money_display.money += 4
+                money_display.money += 5
                 money_display.update();
             elif(not enemies[i].escaped):
                 screen.blit(enemies[i].surface, enemies[i].loc)
@@ -282,8 +282,8 @@ while running:
     if(not wave_in_progress):
         screen.blit(play_button.surface, (play_button.loc[0], play_button.loc[1]))
         if round_finish == True:
-            #this line gives 50 dollars after a round finishes so we can change value to balance game
-            money_display.money += 20
+            #this line gives x dollars after a round finishes so we can change value to balance game
+            money_display.money += 30
             money_display.update()
             round_finish = False
     
