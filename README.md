@@ -49,3 +49,13 @@ The normal tower bullet and sniper bullet have their own classes but do similar 
 
 While the flame from the flame doesn't actually travel it is considered a projectile so the flame wouldn't need to be implemented within the flame tower class
 ### Art
+All of the artwork in our game is made of pixel art using an online pixel art editor.
+
+Art Credit:
+* Start Screen - Will Heeney
+* Map - Will Heeney
+* Game Start Button - Will Heeney
+* Round Start Button - Keegan Smith
+* Shop Button - Will Heeney
+* Win Screen - Keegan Smith
+* Lose Screen - Keegan Smith
