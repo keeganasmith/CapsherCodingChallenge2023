@@ -36,3 +36,13 @@ Shop_Item holds the information about each tower that is in the shop mainly the 
 ### Projectile
 
 ### Art
+All of the artwork in our game is made of pixel art using an online pixel art editor.
+
+Art Credit:
+* Start Screen - Will Heeney
+* Map - Will Heeney
+* Game Start Button - Will Heeney
+* Round Start Button - Keegan Smith
+* Shop Button - Will Heeney
+* Win Screen - Keegan Smith
+* Lose Screen - Keegan Smith
