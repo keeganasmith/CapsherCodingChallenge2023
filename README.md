@@ -18,6 +18,13 @@ Once the start button has been pressed, the program changes the screen to the ga
 ### Enemies
 
 ### Shop
+The Shop functionality of the game is implemented with 3 classes being shop_button, Shop, and Shop_Item. These 3 classes work together to smoothly allow the player to buy towers in the shop and place them on the map.
+#### shop_button
+The shop_button class is used to create a button on the main screen so that the event listener for loop in main can detect when the user wants to open and close the shop and properly change the display.
+#### Shop
+The main purpose of the shop class is to hold the different Shop_Items which are the towers that you can buy as well as also detect when a user clicks on an item in the shop and calls the appropriate function to complete that action. The Shop class also checks to see if the user is hovering over a tower in the shop and displays the description for that item if it is.
+#### Shop_Item
+Shop_Item holds the information about each tower that is in the shop mainly the type of tower as well as the description and price. The main function in Shop_Item is the addtower() function which allows the user to click somewhere on the map and then returns the location of the click so that the appropriate tower can be placed in that location.
 
 ### Towers
 
