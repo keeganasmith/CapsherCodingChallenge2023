@@ -11,6 +11,7 @@ import shop
 import radius
 import start_screen
 import sell_tower
+import round_display
 # pygame setup
 pygame.init()
 WIDTH = 1280
@@ -35,6 +36,11 @@ life_display.update()
 #money display:
 money_display = money.Money(1050, 25)
 money_display.money = 100
+
+#round display:
+round_dis = round_display.round_display(1050, 110)
+round_dis.rounds = 1
+round_dis.update()
 
 #sell button
 sell_panel = sell_tower.sell_panel()
@@ -233,6 +239,8 @@ while running:
                 
         if(len(enemies_to_be_deployed) == 0 and len(enemies) == 0):
             wave_in_progress = False
+            round_dis.rounds += 1
+            round_dis.update()
             projectiles_on_screen = []
         i = 0
         while(i < len(towers)):
@@ -260,6 +268,7 @@ while running:
 
     screen.blit(life_display.text, life_display.loc)
     screen.blit(money_display.text, money_display.loc)
+    screen.blit(round_dis.text, round_dis.loc)
     screen.blit(shop_button.surface, (shop_button.loc[0], shop_button.loc[1]))
     i = 0
     while(i < len(towers)):
