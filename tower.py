@@ -2,7 +2,7 @@ import pygame
 import Projectile
 import math
 class Tower:
-    def __init__(self, x_coord = 210, y_coord = 230, center_coord = [-1, -1], height = 70, width = 70, color = 'Orange', firerate = 900, cost = 75):
+    def __init__(self, x_coord = 210, y_coord = 230, center_coord = [-1, -1], height = 70, width = 70, color = 'Orange', firerate = 800, cost = 75):
         self.surface = pygame.Surface((height,width))
         self.surface.fill(color)
         if(center_coord != [-1, -1]):
