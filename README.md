@@ -9,8 +9,8 @@ Block TD is a simple Tower Defense game developed by Keegan Smith, Michael Morri
 python -m pip install -U pygame --user 
 ```
 ## How to Play
-Buy towers and place them around the map to stop each wave of blocks from reaching the end of the track!
-
+Download the "[temp] Clock TD.zip" file and extract it's contents. Then simply run the executable. 
+In the game you will buy towers and place them around the map to stop each wave of blocks from reaching the end of the track!
 ## Design
 ### Main
 
