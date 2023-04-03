@@ -3,6 +3,7 @@ import math
 
 class Enemy:
     def __init__(self):
+        self.slow_id = -1
         # How fast enemy goes
         self.speed = 5
         # Waypoints enemy follows

@@ -69,16 +69,18 @@ class Tower:
     
         
 class slow_tower(Tower):
-    def __init__(self, center_coords = [-1, -1]):
+    def __init__(self, center_coords = [-1, -1], tower_id = 1):
         super().__init__(color = "Blue", cost = 120, center_coord= center_coords)
         self.type = "slow"
         self.slow_factor = 2
+        self.tower_id = tower_id
     def shoot(self, enemies, projectiles_on_screen = []):
         for enemy in enemies:
             if((not enemy.slowed) and self.inRadius(enemy)):
                 enemy.speed /= self.slow_factor;
                 enemy.slowed = True
-            elif(enemy.slowed and not self.inRadius(enemy)):
+                enemy.slow_id = self.tower_id
+            elif(enemy.slowed and enemy.slow_id == self.tower_id and not self.inRadius(enemy)):
                 enemy.speed *= self.slow_factor;
                 enemy.slowed = False
 

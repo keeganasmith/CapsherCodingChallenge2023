@@ -49,7 +49,7 @@ class Shop:
 
 
     #this function is supposed to check if any tower in shop is clicked and then calls the add tower function for that class if it is
-    def checkaction(self, mouse, towers, screen, wall_surfaces, enemies, path_surfaces, cash, sniper_number):
+    def checkaction(self, mouse, towers, screen, wall_surfaces, enemies, path_surfaces, cash, sniper_number, slow_tower_id):
         #loops through each tower type in panel
         for i in range(len(self.slots)):
             #checks to see if tower type is clicked and adds tower to list if it is
@@ -73,9 +73,10 @@ class Shop:
                 #add more if statements for other tower types in shop
                 if i == 1:
                     if self.checkPlacement(screen, path_surfaces, coords, rec.width, rec.height, towers):
-                        tow = tower.slow_tower(center_coords = coords)
+                        tow = tower.slow_tower(center_coords = coords, tower_id = slow_tower_id[0])
                         towers.append(tow)
                         cash.money -= tow.getCost()
+                        slow_tower_id[0] += 1
                 if i ==2:
                     if self.checkPlacement(screen, path_surfaces, coords, rec.width, rec.height, towers):
                         tow = tower.aoe_tower(center_coords= coords)
@@ -87,6 +88,7 @@ class Shop:
                         sniper_number[0] += 1
                         towers.append(tow)
                         cash.money -= tow.getCost()
+
                 return "notexit"
         return "notexit"
         #return towers

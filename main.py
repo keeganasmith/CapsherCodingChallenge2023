@@ -92,6 +92,7 @@ not_started = True;
 victory = False
 lost = False
 num_snipers = [0]
+slow_tower_id = [1]
 while running:
     # resets screen
     screen.fill(0)
@@ -145,7 +146,7 @@ while running:
             
             #this checks to see if player clicked on any towers in shop
             if shop_open:
-                result = shop_panel.checkaction(mouse, towers, screen, wall_surfaces, enemies, path_surfaces, money_display, num_snipers) 
+                result = shop_panel.checkaction(mouse, towers, screen, wall_surfaces, enemies, path_surfaces, money_display, num_snipers, slow_tower_id) 
                 money_display.update();
                 if(result == "exit"):
                     running = False
