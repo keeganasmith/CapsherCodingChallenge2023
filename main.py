@@ -140,7 +140,7 @@ while running:
             
             #this checks to see if player clicked on any towers in shop
             if shop_open:
-                result = shop_panel.checkaction(mouse, towers, screen, enemies, path_surfaces, money_display, num_snipers, slow_tower_id = slow_tower_id) 
+                result = shop_panel.checkaction(mouse, towers, screen, enemies, path_surfaces, money_display, num_snipers, slow_tower_id) 
                 money_display.update();
                 if(result == "exit"):
                     running = False
@@ -284,8 +284,8 @@ while running:
     if(not wave_in_progress):
         screen.blit(play_button.surface, (play_button.loc[0], play_button.loc[1]))
         if round_finish == True:
-            #this line gives x dollars after a round finishes so we can change value to balance game
-            money_display.money += 30
+            #this line gives 50 dollars after a round finishes so we can change value to balance game
+            money_display.money += 20
             money_display.update()
             round_finish = False
     
