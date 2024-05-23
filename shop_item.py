@@ -1,5 +1,6 @@
 import pygame
 import tower
+import asyncio
 background_surface = pygame.image.load("assets/roadmap-new.png")
 background_surface = pygame.transform.scale(background_surface, (1280,720))
 
@@ -47,7 +48,7 @@ class Shop_Item:
         display.blit(temp_surface, [self.loc[0], self.loc[1]-20])
 
 
-    def addtower(self, screen, enemies, towers):
+    async def addtower(self, screen, enemies, towers):
 
         #here we need to wait for user to click so we know coordinates to pass back through of where to place tower
         
@@ -93,5 +94,6 @@ class Shop_Item:
             text = font.render('Press any key to cancel', True, 'black')
             screen.blit(text, (500, 0))
             pygame.display.flip()
+            await asyncio.sleep(0)
 
 
